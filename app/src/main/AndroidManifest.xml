@@ -75,7 +75,8 @@
             android:name=".activity.SearchForServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.PartyServiceActivity" />
-        <activity android:name=".activity.RepairServiceActivity"></activity>
+        <activity android:name=".activity.RepairServiceActivity" />
+        <activity android:name=".activity.Sal1ServiceActivity"></activity>
     </application>
 
 </manifest>

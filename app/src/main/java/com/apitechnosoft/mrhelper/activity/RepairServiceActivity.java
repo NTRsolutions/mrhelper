@@ -11,6 +11,7 @@ import android.text.Html;
 import android.widget.TextView;
 
 import com.apitechnosoft.mrhelper.R;
+import com.apitechnosoft.mrhelper.adapters.RepairServiceAdapter;
 import com.apitechnosoft.mrhelper.adapters.SelectLocationAdapter;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
@@ -53,7 +54,7 @@ public class RepairServiceActivity extends AppCompatActivity {
             ArrayList<Locationreportdata> locationList = new Gson().fromJson(locationstr, new TypeToken<ArrayList<Locationreportdata>>() {
             }.getType());
 
-            SelectLocationAdapter mAdapter = new SelectLocationAdapter(RepairServiceActivity.this,locationList);
+            RepairServiceAdapter mAdapter = new RepairServiceAdapter(RepairServiceActivity.this,locationList);
             recyclerView.setAdapter(mAdapter);
         }
 
