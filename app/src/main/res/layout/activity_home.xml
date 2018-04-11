@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activity.HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimValue_40"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dimValue_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YOUR LOCALITY"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimTextSize_10" />
+
+                    <LinearLayout android:id="@+id/selectlocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:text="Noida"
+                            android:maxLines="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimTextSize_12" />
+
+                        <TextView android:id="@+id/downarrow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="ico"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimTextSize_16" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/searchlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimValue_10"
+                    android:background="@drawable/round_corner_layout"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimValue_10">
+
+                    <TextView android:id="@+id/searchicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="icon"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="@dimen/dimTextSize_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:text="Search for a service"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="@dimen/dimTextSize_12" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:id="@+id/allserviceLayout"
+                android:visibility="gone"
+                android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Recommended Services"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/seeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recommended_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Repairs"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/repairseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/repair_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:text="Home Cleaning &amp; care"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/homecleanseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/homeclean_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Shifting Homes"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/shifthomeseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/shifthome_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:text="Home Design &amp; Construction"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/homedesignseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/homedesign_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Wedding services"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/weddingseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/wedding_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Health and Wellness"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/healthseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/health_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:text="Party and Event Services"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/partyseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/party_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Help For Your Business"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/helpbusinessseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/helpbusiness_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:textColor="#000"
+                            android:text="Other Services"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/dimTextSize_14" />
+
+                        <TextView android:id="@+id/otherseeall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="SEE ALL"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/dimTextSize_12" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/other_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:layout_marginRight="@dimen/dimValue_10"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="@dimen/dimValue_5">
+
+            <LinearLayout android:id="@+id/menusearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView android:id="@+id/menusearchicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ab"
+                    android:textColor="#000"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Search"
+                    android:textColor="#000"
+                    android:textSize="@dimen/dimTextSize_12" />
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/mybooking"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView  android:id="@+id/mybookingicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ab"
+                    android:textColor="@color/divider"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Booings"
+                    android:textColor="@color/divider"
+                    android:textSize="@dimen/dimTextSize_12" />
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView android:id="@+id/profileicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ab"
+                    android:textColor="@color/divider"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textColor="@color/divider"
+                    android:textSize="@dimen/dimTextSize_12" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
