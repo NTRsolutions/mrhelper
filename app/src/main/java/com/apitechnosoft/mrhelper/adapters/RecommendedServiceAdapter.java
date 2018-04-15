@@ -170,9 +170,12 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         holder.recoText.setText(title);
         //Contants.ImageUrl+reObj.getFileName();
         String imageWithoutSpaces = image.replaceAll("\\s+","");
-        Picasso.with(mContext).load(imageWithoutSpaces).placeholder(R.drawable.logo).into(holder.recoImg);
-        Log.d(Contants.LOG_TAG, "---" + imageWithoutSpaces);
-      /*  Glide.with(mContext).load(Contants.ImageUrl+reObj.getFileName())
+        if(dataId==1) {
+            Picasso.with(mContext).load(imageWithoutSpaces).resize(400, 250).placeholder(R.drawable.logo).into(holder.recoImg);
+        }else{
+            Picasso.with(mContext).load(imageWithoutSpaces).resize(200, 200).placeholder(R.drawable.logo).into(holder.recoImg);
+        }
+        /*  Glide.with(mContext).load(Contants.ImageUrl+reObj.getFileName())
                 .thumbnail(0.5f)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

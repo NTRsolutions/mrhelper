@@ -572,7 +572,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/white"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal"
             android:padding="@dimen/dimValue_5">
 
@@ -589,14 +589,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ab"
-                    android:textColor="#000"
+                    android:textColor="@color/search_color"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Search"
-                    android:textColor="#000"
+                    android:textColor="@color/search_color"
                     android:textSize="@dimen/dimTextSize_12" />
 
             </LinearLayout>
@@ -614,14 +614,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ab"
-                    android:textColor="@color/divider"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="My Booings"
-                    android:textColor="@color/divider"
+                    android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 
             </LinearLayout>
@@ -639,14 +639,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ab"
-                    android:textColor="@color/divider"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Profile"
-                    android:textColor="@color/divider"
+                    android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 
             </LinearLayout>
