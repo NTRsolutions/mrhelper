@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
+import com.apitechnosoft.mrhelper.models.SalModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.MyViewHolder> {
 
-    private ArrayList<Locationreportdata> locationList;
+    private   ArrayList<SalModel> list;
     Context mContext;
 
 
@@ -34,8 +36,8 @@ public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.My
     }
 
 
-    public SlaServiceAdapter(Context mContext, ArrayList<Locationreportdata> list) {
-        this.locationList = list;
+    public SlaServiceAdapter(Context mContext, ArrayList<SalModel> list) {
+        this.list = list;
         this.mContext = mContext;
     }
 
@@ -49,7 +51,8 @@ public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.slatext.setText(locationList.get(position).getPinCode());
+        holder.slatext.setText(list.get(position).getTitle());
+        Picasso.with(mContext).load(list.get(position).getImageId()).placeholder(R.drawable.logo).into(holder.photo);
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +63,7 @@ public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.My
 
     @Override
     public int getItemCount() {
-        return locationList.size();
+        return list.size();
     }
 
 

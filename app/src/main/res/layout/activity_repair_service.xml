@@ -4,64 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.RepairServiceActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimValue_10"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/wheredo"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Where do you want to the Interior Decorator"
-            android:textColor="#000"
-            android:textSize="@dimen/dimTextSize_14" />
+            android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/wheredo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Select Your Need :"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/dimTextSize_18"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimValue_10"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/app_bar"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/searchlayout"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimValue_3"
-                android:background="@drawable/round_corner_layout"
-                android:orientation="horizontal"
-                android:padding="@dimen/dimValue_10">
+                android:layout_margin="@dimen/dimValue_10"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal">
 
-                <EditText android:id="@+id/searchtext"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/searchlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimValue_3"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/round_corner_layout"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimValue_10">
+
+                    <EditText
+                        android:id="@+id/searchtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="#00000000"
+                        android:hint="Search for..."
+                        android:textColor="@color/secondary_text"
+                        android:textSize="@dimen/dimTextSize_12" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/searchicon"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:hint="Search for..."
-                    android:background="#00000000"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/dimTextSize_12" />
-
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:text="Next"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimTextSize_14" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/searchicon"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:text="Next"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/dimTextSize_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/repair_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimValue_10" />
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/repair_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/dimValue_10"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
