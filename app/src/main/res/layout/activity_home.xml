@@ -27,499 +27,544 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimValue_10">
+                    android:layout_marginTop="@dimen/dimValue_10"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="YOUR LOCALITY"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/dimTextSize_10" />
-
-                    <LinearLayout android:id="@+id/selectlocation"
+                    <TextView android:id="@+id/yoursercive"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:text="Your Service Expert in Bhopal"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dimTextSize_16" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:text="Noida"
-                            android:maxLines="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dimTextSize_12" />
-
-                        <TextView android:id="@+id/downarrow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="ico"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dimTextSize_16" />
-                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout android:id="@+id/searchlayout"
+                <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimValue_10"
                     android:background="@drawable/round_corner_layout"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dimValue_10">
+                    android:orientation="horizontal">
 
-                    <TextView android:id="@+id/searchicon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="icon"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="@dimen/dimTextSize_16" />
+                    <LinearLayout
+                        android:id="@+id/selectlocation"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:paddingBottom="@dimen/dimValue_10"
+                        android:paddingTop="@dimen/dimValue_10"
+                        android:background="@color/search_color"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:text="Search for a service"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="@dimen/dimTextSize_12" />
+                        <TextView android:id="@+id/locationName"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/dimValue_5"
+                            android:text="Noida"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimTextSize_12" />
 
+                        <TextView
+                            android:id="@+id/downarrow"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="ico"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimTextSize_16" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/searchlayout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:paddingBottom="@dimen/dimValue_10"
+                        android:paddingTop="@dimen/dimValue_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.8"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/dimValue_5"
+                            android:text="Search for a service"
+                            android:gravity="left|center"
+                            android:textColor="@color/secondary_text"
+                            android:textSize="@dimen/dimTextSize_12" />
+
+                        <TextView
+                            android:id="@+id/searchicon"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.2"
+                            android:layout_height="match_parent"
+                            android:text="icon"
+                            android:gravity="center"
+                            android:textColor="@color/secondary_text"
+                            android:textSize="@dimen/dimTextSize_16" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
             <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
                 android:id="@+id/allserviceLayout"
-                android:visibility="gone"
-                android:layout_height="match_parent">
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:layout_marginTop="@dimen/dimValue_10"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="#fff"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Recommended Services"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/seeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Recommended Services"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/seeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recommended_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recommended_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="#fff"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Repairs"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/repairseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Repairs"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/repairseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/repair_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/repair_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:textStyle="bold"
-                            android:text="Home Cleaning &amp; care"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/homecleanseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Home Cleaning &amp; care"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/homecleanseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/homeclean_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/homeclean_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:background="@color/white"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Shifting Homes"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/shifthomeseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Shifting Homes"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/shifthomeseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/shifthome_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/shifthome_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:background="@color/white"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:textStyle="bold"
-                            android:text="Home Design &amp; Construction"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/homedesignseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Home Design &amp; Construction"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/homedesignseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/homedesign_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/homedesign_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:background="@color/white"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Wedding services"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/weddingseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Wedding services"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/weddingseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/wedding_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/wedding_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Health and Wellness"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/healthseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Health and Wellness"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/healthseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/health_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/health_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:textStyle="bold"
-                            android:text="Party and Event Services"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/partyseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Party and Event Services"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/partyseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/party_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/party_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Help For Your Business"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/helpbusinessseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Help For Your Business"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/helpbusinessseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/helpbusiness_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/helpbusiness_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/dimValue_10"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
                         android:layout_marginTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:textColor="#000"
-                            android:text="Other Services"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/dimTextSize_14" />
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_10"
+                            android:orientation="horizontal">
 
-                        <TextView android:id="@+id/otherseeall"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:text="Other Services"
+                                android:textColor="#000"
+                                android:textSize="@dimen/dimTextSize_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/otherseeall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:text="SEE ALL"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dimTextSize_12" />
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/other_recycler_view"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="SEE ALL"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dimTextSize_12" />
+                            android:layout_marginBottom="@dimen/dimValue_5"
+                            android:layout_marginLeft="@dimen/dimValue_10"
+                            android:layout_marginRight="@dimen/dimValue_10"
+                            android:layout_marginTop="@dimen/dimValue_5" />
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/other_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="@dimen/dimValue_10"
-                        android:layout_marginRight="@dimen/dimValue_10"
-                        android:layout_marginTop="@dimen/dimValue_5"
-                        android:layout_marginBottom="@dimen/dimValue_5"
-                        android:layout_height="wrap_content" />
                 </LinearLayout>
-            </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         </LinearLayout>
 
@@ -527,18 +572,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
             android:background="@color/white"
+            android:orientation="horizontal"
             android:padding="@dimen/dimValue_5">
 
-            <LinearLayout android:id="@+id/menusearch"
+            <LinearLayout
+                android:id="@+id/menusearch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView android:id="@+id/menusearchicon"
+                <TextView
+                    android:id="@+id/menusearchicon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ab"
@@ -554,14 +601,16 @@
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/mybooking"
+            <LinearLayout
+                android:id="@+id/mybooking"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView  android:id="@+id/mybookingicon"
+                <TextView
+                    android:id="@+id/mybookingicon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ab"
@@ -577,14 +626,16 @@
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/profile"
+            <LinearLayout
+                android:id="@+id/profile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView android:id="@+id/profileicon"
+                <TextView
+                    android:id="@+id/profileicon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ab"

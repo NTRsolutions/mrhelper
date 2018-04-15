@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
+import com.apitechnosoft.mrhelper.models.SalModel;
 
 import java.util.ArrayList;
 
 public class PartyServiceAdapter extends RecyclerView.Adapter<PartyServiceAdapter.MyViewHolder> {
 
-    private ArrayList<Locationreportdata> locationList;
+    private ArrayList<SalModel> list;
     Context mContext;
 
 
@@ -31,8 +32,8 @@ public class PartyServiceAdapter extends RecyclerView.Adapter<PartyServiceAdapte
     }
 
 
-    public PartyServiceAdapter(Context mContext, ArrayList<Locationreportdata> list) {
-        this.locationList = list;
+    public PartyServiceAdapter(Context mContext, ArrayList<SalModel> list) {
+        this.list = list;
         this.mContext = mContext;
     }
 
@@ -46,7 +47,7 @@ public class PartyServiceAdapter extends RecyclerView.Adapter<PartyServiceAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.partyservice.setText(locationList.get(position).getPinCode());
+        holder.partyservice.setText(list.get(position).getTitle());
         holder.partservicelayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +58,7 @@ public class PartyServiceAdapter extends RecyclerView.Adapter<PartyServiceAdapte
 
     @Override
     public int getItemCount() {
-        return locationList.size();
+        return list.size();
     }
 
 

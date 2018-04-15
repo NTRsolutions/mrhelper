@@ -52,4 +52,5 @@
     <color name="Delete_btn">#ff5252</color>
     <color name="Pay_online_btn">#8bc34a</color>
     <color name="spots_dialog_color">#4c80ba</color>
+    <color name="search_color">#3A949C</color>
 </resources>

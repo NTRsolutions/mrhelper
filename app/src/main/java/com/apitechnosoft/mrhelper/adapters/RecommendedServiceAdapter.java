@@ -1,6 +1,7 @@
 package com.apitechnosoft.mrhelper.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Movie;
 
 import java.util.ArrayList;
@@ -11,9 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.apitechnosoft.mrhelper.R;
+import com.apitechnosoft.mrhelper.activity.LoginActivity;
+import com.apitechnosoft.mrhelper.activity.PartyServiceActivity;
+import com.apitechnosoft.mrhelper.activity.RepairServiceActivity;
+import com.apitechnosoft.mrhelper.activity.Sal1ServiceActivity;
+import com.apitechnosoft.mrhelper.activity.SignupActivity;
 import com.apitechnosoft.mrhelper.models.HelpForBusinesdata;
 import com.apitechnosoft.mrhelper.models.HomeCleaningdata;
 import com.apitechnosoft.mrhelper.models.HomeDesigndata;
@@ -35,14 +42,17 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
     private ArrayList<?> relist;
     public Context mContext;
     public int dataId;
+    public String type="";
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView recoText;
         public ImageView recoImg;
+        public LinearLayout card_view;
 
         public MyViewHolder(View view) {
             super(view);
             recoText = (TextView) view.findViewById(R.id.recoText);
             recoImg = (ImageView) view.findViewById(R.id.recoImg);
+            card_view = (LinearLayout) view.findViewById(R.id.card_view);
         }
     }
 
@@ -55,8 +65,14 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recommended_service_list_row, parent, false);
+        View itemView;
+        if(dataId==1) {
+             itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.recommended_service_list_row, parent, false);
+        }else{
+             itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.other_home_service_row, parent, false);
+        }
 
         return new MyViewHolder(itemView);
     }
@@ -65,8 +81,10 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
     public void onBindViewHolder(MyViewHolder holder, int position) {
         String title="";
         String image="";
+
         if(dataId==1){
             RecommendedServicesdata Obj = (RecommendedServicesdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             //String[] parts = filePath.split("webapps");
@@ -77,6 +95,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==2){
             Repairsdata Obj = (Repairsdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -85,6 +104,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==3){
             HomeCleaningdata Obj = (HomeCleaningdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -93,6 +113,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==4){
             ShiftingHomesdata Obj = (ShiftingHomesdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -101,6 +122,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==5){
             HomeDesigndata Obj = (HomeDesigndata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -109,6 +131,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==6){
             WeddingServicesdata Obj = (WeddingServicesdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -117,6 +140,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==7){
             PartyandEventdata Obj = (PartyandEventdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -125,6 +149,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==8){
             HelpForBusinesdata Obj = (HelpForBusinesdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -133,6 +158,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==9){
             OtherServiecsdata Obj = (OtherServiecsdata) relist.get(position);
+            type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -152,6 +178,26 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.recoImg);*/
         // http://www.mrhelper.in:8084/service/MrHelper_Service_images-1/salone.web
+
+        holder.card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(type.equals("Sal1")){
+                    Intent intent = new Intent(mContext, Sal1ServiceActivity.class);
+                   // intent.putExtra("Number", no);
+                    mContext.startActivity(intent);
+                }else if (type.equals("PartyM1")) {
+                    Intent intent = new Intent(mContext, PartyServiceActivity.class);
+                    // intent.putExtra("Number", no);
+                    mContext.startActivity(intent);
+
+                }else if (type.equals("Repair")) {
+                    Intent intent = new Intent(mContext, RepairServiceActivity.class);
+                    // intent.putExtra("Number", no);
+                    mContext.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

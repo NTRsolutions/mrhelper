@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.widget.TextView;
 
@@ -22,12 +23,14 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 public class RepairServiceActivity extends AppCompatActivity {
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repair_service);
         chechPortaitAndLandSacpe();//chech Portait And LandSacpe Orientation
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
     //chech Portait And LandSacpe Orientation
     public void chechPortaitAndLandSacpe() {
