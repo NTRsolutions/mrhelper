@@ -1,33 +1,34 @@
 package com.apitechnosoft.mrhelper.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
-import android.view.MenuItem;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.adapters.RecommendedServiceAdapter;
+import com.apitechnosoft.mrhelper.adapters.LocationListAdapter;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
 import com.apitechnosoft.mrhelper.framework.ServiceCaller;
 import com.apitechnosoft.mrhelper.models.ContentData;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
-import com.apitechnosoft.mrhelper.models.RecommendedServicesdata;
 import com.apitechnosoft.mrhelper.models.Searchreportdata;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
 import com.apitechnosoft.mrhelper.utilities.Contants;
@@ -37,7 +38,6 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,9 +46,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView recyclerView,repair_recycler_view,other_recycler_view,helpbusiness_recycler_view,party_recycler_view,health_recycler_view;
     RecyclerView wedding_recycler_view,homedesign_recycler_view,shifthome_recycler_view,homeclean_recycler_view;
     ArrayList<Searchreportdata> searchReportlist;
-    String locationstr;
+    ArrayList<Locationreportdata> Locationlist;
     String searchdatastr;
     NestedScrollView allserviceLayout;
+    TextView yoursercive,locationName;
+    boolean locationFlage=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +104,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         profileicon.setText(Html.fromHtml("&#xf009;"));
         LinearLayout profile = (LinearLayout) findViewById(R.id.profile);
         profile.setOnClickListener(this);
-
+         yoursercive = (TextView) findViewById(R.id.yoursercive);
+        locationName = (TextView) findViewById(R.id.locationName);
 
          recyclerView = (RecyclerView) findViewById(R.id.recommended_recycler_view);
         setLinearLayoutManager(recyclerView);
@@ -181,15 +184,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
 
             case R.id.searchlayout:
-                Intent intent1 = new Intent(HomeActivity.this, SearchForServiceActivity.class);
-                intent1.putExtra("Service", searchdatastr);
-                startActivity(intent1);
+                if(locationFlage) {
+                    Intent intent1 = new Intent(HomeActivity.this, SearchForServiceActivity.class);
+                    intent1.putExtra("Service", searchdatastr);
+                    startActivity(intent1);
+                }else{
+                    Toast.makeText(HomeActivity.this,"First select location!",Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.selectlocation:
-                Intent intent = new Intent(HomeActivity.this, SelectLocationActivity.class);
-                intent.putExtra("Location", locationstr);
-                startActivity(intent);
-
+                showLocationListDialog();
                 break;
             case R.id.menusearch:
                 openScreen(HomeActivity.class);
@@ -240,10 +244,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         ContentData data = new Gson().fromJson(result, ContentData.class);
         if (data != null) {
             if (data.getLocationreportdata() != null && data.getLocationreportdata().length > 0) {
-                ArrayList<Locationreportdata> Locationlist = new ArrayList(Arrays.asList(data.getLocationreportdata()));
-                if(Locationlist!=null && Locationlist.size()>0) {
-                    locationstr = new Gson().toJson(Locationlist);
-                }
+                Locationlist = new ArrayList(Arrays.asList(data.getLocationreportdata()));
+
             }
             if (data.getSearchreportdata() != null && data.getSearchreportdata().length > 0) {
                 ArrayList<Searchreportdata> list = new ArrayList(Arrays.asList(data.getSearchreportdata()));
@@ -259,6 +261,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 ArrayList<?> list = new ArrayList(Arrays.asList(data.getRecommendedServicesdata()));
                 if(list!=null && list.size()>0){
                     setAdapter(recyclerView,list,1);
+
                 }
             }
             if (data.getRepairsdata() != null && data.getRepairsdata().length > 0) {
@@ -315,6 +318,41 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         RecommendedServiceAdapter mAdapter = new RecommendedServiceAdapter(HomeActivity.this,relist,dataId);
         recyclerView.setAdapter(mAdapter);
         //mAdapter.notifyDataSetChanged();
+    }
+    //----------open dialog for Location name---------------
+    private void showLocationListDialog() {
+
+        LocationListAdapter adapter;
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.location_list);
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.alertAnimation;
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+
+        final ListView listView = (ListView) dialog.findViewById(R.id.state_list);
+        listView.setAdapter(null);
+        adapter = new LocationListAdapter(HomeActivity.this, Locationlist);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
+                                    long arg3) {
+                yoursercive.setText("Your Service Expert in "+Locationlist.get(pos).getPinCode());
+                locationFlage = true;
+                locationName.setText(Locationlist.get(pos).getPinCode());
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
 }

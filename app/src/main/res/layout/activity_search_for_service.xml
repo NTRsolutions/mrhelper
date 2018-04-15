@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimValue_10"
                     android:hint="Search service item"
+                    android:background="#00000000"
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/dimTextSize_12" />
 

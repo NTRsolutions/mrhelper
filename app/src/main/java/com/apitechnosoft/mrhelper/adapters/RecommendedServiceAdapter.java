@@ -55,8 +55,14 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recommended_service_list_row, parent, false);
+        View itemView;
+        if(dataId==1) {
+             itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.recommended_service_list_row, parent, false);
+        }else{
+             itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.other_home_service_row, parent, false);
+        }
 
         return new MyViewHolder(itemView);
     }
