@@ -74,12 +74,17 @@
         <activity
             android:name=".activity.SearchForServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.PartyServiceActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.RepairServiceActivity"
+        <activity
+            android:name=".activity.PartyServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.Sal1ServiceActivity"
-            android:label="Choose a Service" ></activity>
+        <activity
+            android:name=".activity.RepairServiceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Sal1ServiceActivity"
+            android:label="Choose a Service" />
+        <activity android:name=".activity.RepairServiceAddToCardActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

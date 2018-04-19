@@ -16,8 +16,7 @@ public class Contants {
     public static final String APP_DIRECTORY = "/E" + DEFAULT_APPLICATION_NAME + "Directory/";
     public static final String DATABASE_NAME = "mr_helper.db";// Environment.getExternalStorageDirectory() +  APP_DIRECTORY + "epharma_client.db";
 
-
-    public static String SERVICE_BASE_URL = "http://mrhelper.in:8084/service/resources/";
+    public static String SERVICE_BASE_URL = "http://104.149.239.224:8084/Helper/resources/";//"http://mrhelper.in:8084/service/resources/";
 
     public static String outputBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
     public static String outputDirectoryLocation = outputBasePath + "/mehelperUnzipped/";
@@ -36,5 +35,6 @@ public class Contants {
 
 
     public static final String HomeData = "HomeServices/gethomeData";
+    public static final String RepairData = "ProductServices/getproductData?p=Repair&service=";
 
 }

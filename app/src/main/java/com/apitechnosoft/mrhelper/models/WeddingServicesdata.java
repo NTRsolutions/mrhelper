@@ -4,7 +4,7 @@ public class WeddingServicesdata
 {
     private String afterDiscountPrice;
 
-    private String sno;
+    private int sno;
 
     private String filePath;
 
@@ -44,12 +44,12 @@ public class WeddingServicesdata
         this.afterDiscountPrice = afterDiscountPrice;
     }
 
-    public String getSno ()
+    public int getSno ()
     {
         return sno;
     }
 
-    public void setSno (String sno)
+    public void setSno (int sno)
     {
         this.sno = sno;
     }

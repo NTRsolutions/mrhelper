@@ -82,8 +82,8 @@ public class ServiceCaller {
         }.execute();
     }
 */
-    //call login data
-    public void callHomeService( final IAsyncWorkCompletedCallback workCompletedCallback) {
+    //call home data
+    public void callHomeService(final IAsyncWorkCompletedCallback workCompletedCallback) {
 
         final String url = Contants.SERVICE_BASE_URL + Contants.HomeData;
         new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
@@ -92,10 +92,25 @@ public class ServiceCaller {
                 if (result != null) {
                     workCompletedCallback.onDone(result, true);
                 } else {
-                    workCompletedCallback.onDone("loginService done", false);
+                    workCompletedCallback.onDone("homeService done", false);
                 }
             }
         });
     }
 
+    //call repair data
+    public void callRepairService(int sNumber, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.RepairData + sNumber;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("repairService done", false);
+                }
+            }
+        });
+    }
 }

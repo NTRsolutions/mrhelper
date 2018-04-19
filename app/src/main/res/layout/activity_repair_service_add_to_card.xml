@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activity.RepairServiceActivity">
+    tools:context=".activity.RepairServiceAddToCardActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="Select Your Need :"
+                        android:text="Add to card"
                         android:textColor="#fff"
                         android:textSize="@dimen/dimTextSize_18"
                         android:textStyle="bold" />
@@ -49,52 +48,11 @@
             android:layout_below="@+id/app_bar"
             android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/repair_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimValue_10"
-                android:background="@color/colorPrimary"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/searchlayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimValue_3"
-                    android:layout_weight="0.8"
-                    android:background="@drawable/round_corner_layout"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dimValue_10">
-
-                    <EditText
-                        android:id="@+id/searchtext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:hint="Search for..."
-                        android:textColor="@color/secondary_text"
-                        android:textSize="@dimen/dimTextSize_12" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/searchicon"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="Next"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimTextSize_14" />
-            </LinearLayout>
-
-
-            <ExpandableListView
-                android:id="@+id/lvExp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-                android:scrollbars="none" />
+                android:layout_margin="@dimen/dimValue_10" />
         </LinearLayout>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

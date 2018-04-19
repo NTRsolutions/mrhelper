@@ -44,6 +44,8 @@ public class PartyServiceActivity extends AppCompatActivity {
         }
     }
     private void initView(){
+        int number = getIntent().getIntExtra("sNumber",0);
+
         TextView wheredo = (TextView) toolbar.findViewById(R.id.wheredo);
 
         ArrayList<SalModel> list=new ArrayList<SalModel>();

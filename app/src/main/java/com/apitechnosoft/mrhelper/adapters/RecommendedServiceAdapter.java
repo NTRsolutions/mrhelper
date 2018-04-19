@@ -43,6 +43,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
     public Context mContext;
     public int dataId;
     public String type="";
+    public int sno;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView recoText;
         public ImageView recoImg;
@@ -84,6 +85,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
 
         if(dataId==1){
             RecommendedServicesdata Obj = (RecommendedServicesdata) relist.get(position);
+            sno=Obj.getSno();
             type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
@@ -95,6 +97,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==2){
             Repairsdata Obj = (Repairsdata) relist.get(position);
+            sno=Obj.getSno();
             type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
@@ -104,6 +107,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==3){
             HomeCleaningdata Obj = (HomeCleaningdata) relist.get(position);
+            sno=Obj.getSno();
             type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
@@ -113,6 +117,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         }
         if(dataId==4){
             ShiftingHomesdata Obj = (ShiftingHomesdata) relist.get(position);
+            sno=Obj.getSno();
             type=Obj.getType();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
@@ -123,6 +128,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         if(dataId==5){
             HomeDesigndata Obj = (HomeDesigndata) relist.get(position);
             type=Obj.getType();
+            sno=Obj.getSno();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -132,6 +138,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         if(dataId==6){
             WeddingServicesdata Obj = (WeddingServicesdata) relist.get(position);
             type=Obj.getType();
+            sno=Obj.getSno();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -141,6 +148,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         if(dataId==7){
             PartyandEventdata Obj = (PartyandEventdata) relist.get(position);
             type=Obj.getType();
+            sno=Obj.getSno();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -150,6 +158,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         if(dataId==8){
             HelpForBusinesdata Obj = (HelpForBusinesdata) relist.get(position);
             type=Obj.getType();
+            sno=Obj.getSno();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -159,6 +168,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         if(dataId==9){
             OtherServiecsdata Obj = (OtherServiecsdata) relist.get(position);
             type=Obj.getType();
+            sno=Obj.getSno();
             title=Obj.getImageDescription();
             String filePath=Obj.getFilePath();
             if(filePath!=null && !filePath.equals("")) {
@@ -187,16 +197,16 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
             public void onClick(View view) {
                 if(type.equals("Sal1")){
                     Intent intent = new Intent(mContext, Sal1ServiceActivity.class);
-                   // intent.putExtra("Number", no);
+                    intent.putExtra("sNumber", sno);
                     mContext.startActivity(intent);
                 }else if (type.equals("PartyM1")) {
                     Intent intent = new Intent(mContext, PartyServiceActivity.class);
-                    // intent.putExtra("Number", no);
+                     intent.putExtra("sNumber", sno);
                     mContext.startActivity(intent);
 
                 }else if (type.equals("Repair")) {
                     Intent intent = new Intent(mContext, RepairServiceActivity.class);
-                    // intent.putExtra("Number", no);
+                     intent.putExtra("sNumber", sno);
                     mContext.startActivity(intent);
                 }
             }

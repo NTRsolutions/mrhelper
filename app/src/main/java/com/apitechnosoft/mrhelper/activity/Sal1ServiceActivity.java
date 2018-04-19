@@ -11,14 +11,21 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.adapters.SlaServiceAdapter;
+import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
+import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
+import com.apitechnosoft.mrhelper.framework.ServiceCaller;
+import com.apitechnosoft.mrhelper.models.ContentData;
 import com.apitechnosoft.mrhelper.models.SalModel;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
+import com.apitechnosoft.mrhelper.utilities.Contants;
 import com.apitechnosoft.mrhelper.utilities.FontManager;
+import com.apitechnosoft.mrhelper.utilities.Utility;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class Sal1ServiceActivity extends AppCompatActivity {
-
+private int number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,8 @@ public class Sal1ServiceActivity extends AppCompatActivity {
             initView();
         }
         private void initView(){
+             number = getIntent().getIntExtra("sNumber",0);
+
         ArrayList<SalModel> list=new ArrayList<SalModel>();
             SalModel salModel=new SalModel();
             salModel.setTitle("Packages");
@@ -93,7 +102,33 @@ public class Sal1ServiceActivity extends AppCompatActivity {
                 SlaServiceAdapter mAdapter = new SlaServiceAdapter(Sal1ServiceActivity.this,list);
                 recyclerView.setAdapter(mAdapter);
 
-
+        }
+    private void getSaldata() {
+        if (Utility.isOnline(this)) {
+            final CircleDotDialog dotDialog = new CircleDotDialog(Sal1ServiceActivity.this);
+            dotDialog.show();
+            ServiceCaller serviceCaller = new ServiceCaller(this);
+            serviceCaller.callRepairService(number,new IAsyncWorkCompletedCallback() {
+                @Override
+                public void onDone(String result, boolean isComplete) {
+                    if (isComplete) {
+                        parseSalData(result);
+                    } else {
+                        Utility.alertForErrorMessage(Contants.Error, Sal1ServiceActivity.this);
+                    }
+                    if (dotDialog.isShowing()) {
+                        dotDialog.dismiss();
+                    }
+                }
+            });
+        } else {
+            Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
+        }
+    }
+    private void parseSalData(String result) {
+        ContentData data = new Gson().fromJson(result, ContentData.class);
+        if (data != null) {
 
         }
+    }
     }
