@@ -1,6 +1,7 @@
 package com.apitechnosoft.mrhelper.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.apitechnosoft.mrhelper.R;
+import com.apitechnosoft.mrhelper.activity.RepairServiceActivity;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
 import com.apitechnosoft.mrhelper.models.SalModel;
 import com.squareup.picasso.Picasso;
@@ -21,7 +23,7 @@ public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.My
 
     private   ArrayList<SalModel> list;
     Context mContext;
-
+    private int number;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView slatext;
@@ -36,9 +38,10 @@ public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.My
     }
 
 
-    public SlaServiceAdapter(Context mContext, ArrayList<SalModel> list) {
+    public SlaServiceAdapter(Context mContext, ArrayList<SalModel> list, int number) {
         this.list = list;
         this.mContext = mContext;
+        this.number=number;
     }
 
     @Override
@@ -56,7 +59,9 @@ public class SlaServiceAdapter extends RecyclerView.Adapter<SlaServiceAdapter.My
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ((Activity)mContext).finish();
+                Intent intent = new Intent(mContext, RepairServiceActivity.class);
+                intent.putExtra("sNumber", number);
+                mContext.startActivity(intent);
             }
         });
     }

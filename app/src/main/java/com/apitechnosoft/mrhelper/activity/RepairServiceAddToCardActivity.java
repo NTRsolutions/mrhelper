@@ -1,24 +1,35 @@
 package com.apitechnosoft.mrhelper.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.adapters.RepairServiceAdapter;
+import com.apitechnosoft.mrhelper.models.DetailListDashboarddata;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
+import com.apitechnosoft.mrhelper.utilities.FontManager;
+import com.apitechnosoft.mrhelper.utilities.Utility;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RepairServiceAddToCardActivity extends AppCompatActivity {
-    Toolbar toolbar;
+private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +49,58 @@ public class RepairServiceAddToCardActivity extends AppCompatActivity {
 
     }
     private void initView(){
-        String locationstr = "";
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            locationstr= extras.getString("Location");
+        TextView totalAmountText = (TextView) findViewById(R.id.totalAmount);
+        TextView count = (TextView) findViewById(R.id.count);
+        final String ServiceName = getIntent().getStringExtra("ServiceName");
+        String MenuDetail = getIntent().getStringExtra("MenuDetail");
+        TextView wheredo = (TextView) toolbar.findViewById(R.id.wheredo);
+        wheredo.setText("Best "+ServiceName+" in This Area");
 
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.location_recycler_view);
+        ArrayList<DetailListDashboarddata> detaiArraylList = new Gson().fromJson(MenuDetail, new TypeToken<ArrayList<DetailListDashboarddata>>() {
+        }.getType());
+        ArrayList<DetailListDashboarddata> detailList=new  ArrayList<DetailListDashboarddata>();
+        for(DetailListDashboarddata dashboarddata:detaiArraylList){
+            if(dashboarddata.getName().equals(ServiceName)){
+                detailList.add(dashboarddata);
+            }
+        }
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.repair_recycler_view);
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-            ArrayList<Locationreportdata> locationList = new Gson().fromJson(locationstr, new TypeToken<ArrayList<Locationreportdata>>() {
-            }.getType());
-
-            RepairServiceAdapter mAdapter = new RepairServiceAdapter(RepairServiceAddToCardActivity.this,locationList);
+            RepairServiceAdapter mAdapter = new RepairServiceAdapter(RepairServiceAddToCardActivity.this,detailList,ServiceName,totalAmountText);
             recyclerView.setAdapter(mAdapter);
-        }
+
+        Typeface materialdesignicons_font = FontManager.getFontTypefaceMaterialDesignIcons(this, "fonts/materialdesignicons-webfont.otf");
+
+        TextView arrowicon = (TextView) findViewById(R.id.arrowicon);
+        arrowicon.setTypeface(materialdesignicons_font);
+        arrowicon.setText(Html.fromHtml("&#xf054;"));
+        LinearLayout checkoutLayout= (LinearLayout) findViewById(R.id.checkoutLayout);
+        checkoutLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences prefs = getSharedPreferences("AmountPre", MODE_PRIVATE);
+                float totalAmount = prefs.getFloat("totalAmount",0);
+                Intent intent = new Intent(RepairServiceAddToCardActivity.this, AddressActivity.class);
+                intent.putExtra("ServiceName", ServiceName);
+                intent.putExtra("totalAmount", totalAmount);
+                intent.putExtra("NavigationFlag", 2);
+                startActivity(intent);
+
+              /*  if(totalAmount>599){
+
+                }else{
+                    Utility.alertForErrorMessage("Min Checkout Amount - Rs.599",RepairServiceAddToCardActivity.this);
+                }*/
+            }
+        });
+
+    }
+    private void addValue(){
+
     }
 
 }

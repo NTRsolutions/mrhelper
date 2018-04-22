@@ -113,4 +113,67 @@ public class ServiceCaller {
             }
         });
     }
+    //call otp data
+    public void callOtpService(String mobileNostr, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.OTP + mobileNostr;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("OtpService done", false);
+                }
+            }
+        });
+    }
+
+    //call save data
+    public void callSaveService(String dataUrl, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.SAVE_REP_TYPE + dataUrl;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("SaveService done", false);
+                }
+            }
+        });
+    }
+
+    //call party data
+    public void callPartyService(int sNumber, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.PartyData + sNumber;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("PartyService done", false);
+                }
+            }
+        });
+    }
+
+    //call save data
+    public void callPartySaveService(String dataUrl, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.SavePartyData + dataUrl;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("PartySaveService done", false);
+                }
+            }
+        });
+    }
 }

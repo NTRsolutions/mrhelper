@@ -99,11 +99,11 @@ private int number;
               /*  ArrayList<Locationreportdata> locationList = new Gson().fromJson(locationstr, new TypeToken<ArrayList<Locationreportdata>>() {
                 }.getType());*/
 
-                SlaServiceAdapter mAdapter = new SlaServiceAdapter(Sal1ServiceActivity.this,list);
+                SlaServiceAdapter mAdapter = new SlaServiceAdapter(Sal1ServiceActivity.this,list,number);
                 recyclerView.setAdapter(mAdapter);
 
         }
-    private void getSaldata() {
+   /* private void getSaldata() {
         if (Utility.isOnline(this)) {
             final CircleDotDialog dotDialog = new CircleDotDialog(Sal1ServiceActivity.this);
             dotDialog.show();
@@ -130,5 +130,5 @@ private int number;
         if (data != null) {
 
         }
-    }
+    }*/
     }

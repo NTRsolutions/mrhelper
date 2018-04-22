@@ -192,6 +192,15 @@ public class DetailListDashboarddata {
     {
         this.option = option;
     }
+private boolean isSelected=false;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     @Override
     public String toString()

@@ -37,4 +37,10 @@ public class Contants {
     public static final String HomeData = "HomeServices/gethomeData";
     public static final String RepairData = "ProductServices/getproductData?p=Repair&service=";
 
+    public static final String OTP = "OtpServices/getOtp?mobiles=";
+    public static final String SAVE_REP_TYPE = "SaveServiceRepType/saveservicesreptype?";
+
+    public static final String PartyData = "PartyMServices/getPartyMServices?service=";
+
+    public static final String SavePartyData = "SaveServiceDetailParType/saveServicedetailpartype?";
 }

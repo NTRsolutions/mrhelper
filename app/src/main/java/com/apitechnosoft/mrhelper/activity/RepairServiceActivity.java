@@ -1,7 +1,9 @@
 package com.apitechnosoft.mrhelper.activity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,7 +18,6 @@ import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.adapters.RepairExpandableListAdapter;
-import com.apitechnosoft.mrhelper.adapters.RepairServiceAdapter;
 import com.apitechnosoft.mrhelper.adapters.SelectLocationAdapter;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
@@ -35,6 +36,7 @@ import com.apitechnosoft.mrhelper.utilities.Utility;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -124,9 +126,12 @@ public class RepairServiceActivity extends AppCompatActivity {
         RepairContentData data = new Gson().fromJson(result, RepairContentData.class);
         if (data != null) {
             DetailListDashboarddata[] detailList = data.getDetailListDashboarddata();
-            MenuheadingtData[] menuList = data.getMenuheadingtData();
+            ArrayList<DetailListDashboarddata> detaiArraylList = new ArrayList<DetailListDashboarddata>(Arrays.asList(detailList));
+           final String detaiArraylListStr= new Gson().toJson(detaiArraylList);
+
+             MenuheadingtData[] menuList = data.getMenuheadingtData();
             if (menuList != null && menuList.length > 0) {
-                List<RepairItemsListParentModel> newMenuParentList=new ArrayList<RepairItemsListParentModel>();
+                final List<RepairItemsListParentModel> newMenuParentList=new ArrayList<RepairItemsListParentModel>();
                 for(MenuheadingtData menuData:menuList){
                     RepairItemsListParentModel parentModel=new RepairItemsListParentModel();
                     parentModel.setSno(menuData.getSno());
@@ -145,6 +150,16 @@ public class RepairServiceActivity extends AppCompatActivity {
                     RepairExpandableListAdapter listAdapter = new RepairExpandableListAdapter(RepairServiceActivity.this, newMenuParentList);
                     expListView.setAdapter(listAdapter);
                 }
+                expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                    @Override
+                    public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long id) {
+                        Intent intent = new Intent(RepairServiceActivity.this, RepairServiceAddToCardActivity.class);
+                        intent.putExtra("ServiceName", newMenuParentList.get(groupPosition).getServiceName());
+                        intent.putExtra("MenuDetail", detaiArraylListStr);
+                        startActivity(intent);
+                        return false;
+                    }
+                });
             }
 
         }

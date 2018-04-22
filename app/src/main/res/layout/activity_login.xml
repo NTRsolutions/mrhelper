@@ -86,10 +86,7 @@
                 android:id="@+id/tv_fbText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
-
                 android:gravity="center"
-
                 android:text="Login/SignUp"
                 android:textColor="#fff"
                 android:textSize="16dp" />

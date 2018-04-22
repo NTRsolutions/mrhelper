@@ -83,7 +83,22 @@
         <activity
             android:name=".activity.Sal1ServiceActivity"
             android:label="Choose a Service" />
-        <activity android:name=".activity.RepairServiceAddToCardActivity"
+        <activity
+            android:name=".activity.RepairServiceAddToCardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AddressActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.OTPActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.PartyMServicesdataOneActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.PartyMServicesdataTwoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.PartyMServicesdataThreeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.PartyMServicesdataFourActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
