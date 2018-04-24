@@ -589,23 +589,25 @@
             <LinearLayout
                 android:id="@+id/menusearch"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/menusearchicon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ab"
+                    android:gravity="center"
                     android:textColor="@color/search_color"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Search"
+                    android:gravity="center"
                     android:textColor="@color/search_color"
                     android:textSize="@dimen/dimTextSize_12" />
 
@@ -614,48 +616,77 @@
             <LinearLayout
                 android:id="@+id/mybooking"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/mybookingicon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ab"
+                    android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="My Booings"
+                    android:gravity="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/becomeHost"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/hosticon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ab"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Become A Professional"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:textSize="@dimen/dimTextSize_12" />
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/profile"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/profileicon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ab"
+                    android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Profile"
+                    android:gravity="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 

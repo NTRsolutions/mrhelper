@@ -30,6 +30,7 @@ import java.util.Arrays;
 
 public class RepairServiceAddToCardActivity extends AppCompatActivity {
 private Toolbar toolbar;
+    int sNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ private Toolbar toolbar;
         TextView count = (TextView) findViewById(R.id.count);
         final String ServiceName = getIntent().getStringExtra("ServiceName");
         String MenuDetail = getIntent().getStringExtra("MenuDetail");
+         sNo = getIntent().getIntExtra("sNumber",0);
         TextView wheredo = (TextView) toolbar.findViewById(R.id.wheredo);
         wheredo.setText("Best "+ServiceName+" in This Area");
 
@@ -88,6 +90,7 @@ private Toolbar toolbar;
                 intent.putExtra("ServiceName", ServiceName);
                 intent.putExtra("totalAmount", totalAmount);
                 intent.putExtra("NavigationFlag", 2);
+                intent.putExtra("Sno", sNo);
                 startActivity(intent);
 
               /*  if(totalAmount>599){

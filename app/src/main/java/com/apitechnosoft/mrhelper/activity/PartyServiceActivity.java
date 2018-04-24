@@ -306,6 +306,7 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                 editor.putString("serviceName", serviceName);
                 editor.putString("Step", selectedValue());
                 editor.putString("heading", heading);
+                editor.putInt("Sno", sNumber);
                 editor.commit();
                 if (isfirst) {
                     if (!partyMServicesdataOne.getSno().equals("0") && partyMServicesdataOne.getOption() != null && !partyMServicesdataOne.getOption().equals("")) {

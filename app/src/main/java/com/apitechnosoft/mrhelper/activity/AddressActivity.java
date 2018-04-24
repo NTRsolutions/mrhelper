@@ -44,7 +44,7 @@ public class AddressActivity extends AppCompatActivity {
     String ServiceName;
     String totalAmount;
     int NavigationFlag;
-
+    int sNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,11 +70,13 @@ public class AddressActivity extends AppCompatActivity {
         if (NavigationFlag == 2) {
             ServiceName = getIntent().getStringExtra("ServiceName");
             totalAmount = getIntent().getStringExtra("totalAmount");
+            sNo = getIntent().getIntExtra("Sno",0);
         }
         //come from party screen
         if (NavigationFlag == 1) {
             SharedPreferences prefs = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE);
             ServiceName = prefs.getString("heading", "");
+            sNo = getIntent().getIntExtra("Sno",0);
         }
         TextView wheredo = (TextView) toolbar.findViewById(R.id.wheredo);
         wheredo.setText("Best " + ServiceName + " in This Area");
@@ -225,6 +227,7 @@ public class AddressActivity extends AppCompatActivity {
         editor.putString("timeViewStr", timeViewStr);
         editor.putString("caladerDateStr", caladerDateStr);
         editor.putString("totalAmount", totalAmount);
+        editor.putInt("Sno", sNo);
         editor.commit();
     }
 

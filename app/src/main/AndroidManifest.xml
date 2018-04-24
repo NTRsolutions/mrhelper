@@ -92,14 +92,22 @@
         <activity
             android:name=".activity.OTPActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.PartyMServicesdataOneActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.PartyMServicesdataTwoActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.PartyMServicesdataThreeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.PartyMServicesdataFourActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.PartyMServicesdataOneActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PartyMServicesdataTwoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PartyMServicesdataThreeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PartyMServicesdataFourActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.BecomeHostActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.ThankYouActivity"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

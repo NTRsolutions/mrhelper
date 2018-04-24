@@ -81,9 +81,9 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isValidate()) {
-                    if(NavigationFlag==1){
+                    if (NavigationFlag == 1) {
                         getSavePartyService();
-                    }else{
+                    } else {
                         getSaveService();
                     }
                 }
@@ -105,8 +105,9 @@ public class OTPActivity extends AppCompatActivity {
         String timeViewStr = prefs.getString("timeViewStr", "");
         String caladerDateStr = prefs.getString("caladerDateStr", "");
         String totalAmount = prefs.getString("totalAmount", "");
+        int sno = prefs.getInt("Sno", 0);
 
-        dataUrl = "servicesno=7000000000&password=" + passwordstr + "&email=" + emailaddressStr + "&section_home_service_sno=52&totalservice=5&name=" + nameStr + "&mobileno=" + mobileNostr + "&serviceamount=" + totalAmount + "&aftertaxamount=" + totalAmount + " &servicetime=" + timeViewStr + "&servicedate=" + caladerDateStr + "&houseno=" + houneNoStr + "&location=" + locationstr + "&landmark=" + landMarkStr + "&servicename=12555?mobiles=" + mobileNostr + "";
+        dataUrl = "servicesno=" + sno + "&password=" + passwordstr + "&email=" + emailaddressStr + "&section_home_service_sno=52&totalservice=5&name=" + nameStr + "&mobileno=" + mobileNostr + "&serviceamount=" + totalAmount + "&aftertaxamount=" + totalAmount + " &servicetime=" + timeViewStr + "&servicedate=" + caladerDateStr + "&houseno=" + houneNoStr + "&location=" + locationstr + "&landmark=" + landMarkStr + "&servicename=" + sno + "";
     }
 
     private void getPartyStepData() {
@@ -118,9 +119,10 @@ public class OTPActivity extends AppCompatActivity {
         String mobileNostr = prefs.getString("mobileNostr", "");
         String passwordstr = prefs.getString("passwordstr", "");
         String emailaddressStr = prefs.getString("emailaddressStr", "");
-        String timeViewStr = prefs.getString("timeViewStr", "");
+       // String timeViewStr = prefs.getString("timeViewStr", "");
         String caladerDateStr = prefs.getString("caladerDateStr", "");
-        String totalAmount = prefs.getString("totalAmount", "");
+        //String totalAmount = prefs.getString("totalAmount", "");
+       // int sno = prefs.getInt("Sno", 0);
 
         SharedPreferences Stepprefs = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE);
         String Step = Stepprefs.getString("Step", "");
@@ -129,7 +131,8 @@ public class OTPActivity extends AppCompatActivity {
         String Step3 = Stepprefs.getString("Step3", "");
         String Step4 = Stepprefs.getString("Step4", "");
         ServiceName = Stepprefs.getString("heading", "");
-        dataUrl = "step1=" + Step + "&step2=" + Step1 + "&step3=" + Step2 + "&step4=" + Step3 + "&step5=" + Step4 + "&servicesno=7000000000&password=" + passwordstr + "&emailid=" + emailaddressStr + "&name=" + nameStr + "&mobileno=" + mobileNostr + " &servicetime=" + timeViewStr + "&servicedate=" + caladerDateStr + "&houseno=" + houneNoStr + "&location=" + locationstr + "&landmark=" + landMarkStr + "&servicename=12555";
+        int SNo = Stepprefs.getInt("Sno", 0);
+        dataUrl = "step1=" + Step + "&step2=" + Step1 + "&step3=" + Step2 + "&step4=" + Step3 + "&step5=" + Step4 + "&password=" + passwordstr + "&emailid=" + emailaddressStr + "&name=" + nameStr + "&mobileno=" + mobileNostr + "&servicedate=" + caladerDateStr + "&houseno=" + houneNoStr + "&location=" + locationstr + "&landmark=" + landMarkStr + "&servicename="+SNo+"";
     }
 
     private boolean isValidate() {

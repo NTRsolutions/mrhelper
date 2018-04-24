@@ -156,6 +156,7 @@ public class RepairServiceActivity extends AppCompatActivity {
                         Intent intent = new Intent(RepairServiceActivity.this, RepairServiceAddToCardActivity.class);
                         intent.putExtra("ServiceName", newMenuParentList.get(groupPosition).getServiceName());
                         intent.putExtra("MenuDetail", detaiArraylListStr);
+                        intent.putExtra("Sno", sNumber);
                         startActivity(intent);
                         return false;
                     }

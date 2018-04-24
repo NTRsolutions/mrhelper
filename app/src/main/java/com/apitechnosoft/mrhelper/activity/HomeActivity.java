@@ -111,6 +111,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         profileicon.setText(Html.fromHtml("&#xf009;"));
         LinearLayout profile = (LinearLayout) findViewById(R.id.profile);
         profile.setOnClickListener(this);
+
+        TextView hosticon = (TextView) findViewById(R.id.hosticon);
+        hosticon.setTypeface(materialdesignicons_font);
+        hosticon.setText(Html.fromHtml("&#xf009;"));
+        LinearLayout becomeHost = (LinearLayout) findViewById(R.id.becomeHost);
+        becomeHost.setOnClickListener(this);
         yoursercive = (TextView) findViewById(R.id.yoursercive);
         locationName = (TextView) findViewById(R.id.locationName);
 
@@ -210,6 +216,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.profile:
                 openScreen(LoginActivity.class);
+                break;
+            case R.id.becomeHost:
+                openScreen(BecomeHostActivity.class);
                 break;
 
         }
