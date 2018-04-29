@@ -42,9 +42,10 @@ public class AddressActivity extends AppCompatActivity {
     String houneNoStr, locationstr, landMarkStr, nameStr, mobileNostr, passwordstr, emailaddressStr, timeViewStr, caladerDateStr;
     TextView caladerDate, timeView;
     String ServiceName;
-    String totalAmount;
+    float totalAmount;
+    String selectedValueSno;
     int NavigationFlag;
-    int sNo;
+    int sNo,NoOfService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +70,10 @@ public class AddressActivity extends AppCompatActivity {
         //come from repair screen
         if (NavigationFlag == 2) {
             ServiceName = getIntent().getStringExtra("ServiceName");
-            totalAmount = getIntent().getStringExtra("totalAmount");
+            totalAmount = getIntent().getFloatExtra("totalAmount",0);
             sNo = getIntent().getIntExtra("Sno",0);
+            selectedValueSno = getIntent().getStringExtra("selectedValue");
+            NoOfService = getIntent().getIntExtra("NoOfService",0);
         }
         //come from party screen
         if (NavigationFlag == 1) {
@@ -226,8 +229,10 @@ public class AddressActivity extends AppCompatActivity {
         editor.putString("emailaddressStr", emailaddressStr);
         editor.putString("timeViewStr", timeViewStr);
         editor.putString("caladerDateStr", caladerDateStr);
-        editor.putString("totalAmount", totalAmount);
+        editor.putFloat("totalAmount", totalAmount);
         editor.putInt("Sno", sNo);
+        editor.putString("selectedValueSno", selectedValueSno);
+        editor.putInt("NoOfService", NoOfService);
         editor.commit();
     }
 

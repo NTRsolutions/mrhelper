@@ -1,6 +1,7 @@
 package com.apitechnosoft.mrhelper.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +25,6 @@ public class RepairServiceAdapter extends RecyclerView.Adapter<RepairServiceAdap
     private ArrayList<DetailListDashboarddata> locationList;
     Context mContext;
     String ServiceName;
-    TextView totalAmountText;
     Typeface materialdesignicons_font;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView subHeading, oldPrice, newPrice, option2, option1, free, starting, tickIcon2;
@@ -49,11 +49,10 @@ public class RepairServiceAdapter extends RecyclerView.Adapter<RepairServiceAdap
     }
 
 
-    public RepairServiceAdapter(Context mContext, ArrayList<DetailListDashboarddata> list, String ServiceName,TextView totalAmountText) {
+    public RepairServiceAdapter(Context mContext, ArrayList<DetailListDashboarddata> list, String ServiceName) {
         this.locationList = list;
         this.mContext = mContext;
         this.ServiceName = ServiceName;
-        this.totalAmountText=totalAmountText;
         materialdesignicons_font = Typeface.createFromAsset(mContext.getAssets(), "fonts/materialdesignicons-webfont.otf");
     }
 
@@ -87,17 +86,21 @@ public class RepairServiceAdapter extends RecyclerView.Adapter<RepairServiceAdap
         }
         holder.addLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SharedPreferences prefs = mContext.getSharedPreferences("AmountPre", mContext.MODE_PRIVATE);
-                float totalAmount = prefs.getFloat("totalAmount", 0);
+                boolean flage=false;
                 if (locationList.get(position).isSelected()) {
                     locationList.get(position).setSelected(false);
-                    totalAmount = totalAmount - Float.parseFloat(locationList.get(position).getRate2());
+                    flage=false;
                 } else {
                     locationList.get(position).setSelected(true);
-                    totalAmount = totalAmount + Float.parseFloat(locationList.get(position).getRate2());
+                    flage=true;//to check item seleeted or not
                 }
-                totalAmountText.setText("Rs."+totalAmount);
-                AddAmount(totalAmount);
+
+                Intent intent = new Intent("AddItem");
+                intent.putExtra("ItemSon", locationList.get(position).getSno());
+                intent.putExtra("Price", locationList.get(position).getRate2());
+                intent.putExtra("AddRemove", flage);
+                mContext.sendBroadcast(intent);
+
                 notifyItemChanged(position);
             }
         });
@@ -110,11 +113,7 @@ public class RepairServiceAdapter extends RecyclerView.Adapter<RepairServiceAdap
         });
     }
 
-    private void AddAmount(float totalAmount) {
-        SharedPreferences.Editor editor = mContext.getSharedPreferences("AmountPre", mContext.MODE_PRIVATE).edit();
-        editor.putFloat("totalAmount", totalAmount);
-        editor.commit();
-    }
+
 
     @Override
     public int getItemCount() {
