@@ -157,8 +157,8 @@ public class OTPActivity extends AppCompatActivity {
             serviceCaller.callSaveService(dataUrl, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    Intent intent = new Intent(OTPActivity.this, HomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(OTPActivity.this, ThankYouActivity.class);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 
                     SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
@@ -188,8 +188,8 @@ public class OTPActivity extends AppCompatActivity {
             serviceCaller.callPartySaveService(dataUrl, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    Intent intent = new Intent(OTPActivity.this, HomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(OTPActivity.this, ThankYouActivity.class);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 
                     SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();

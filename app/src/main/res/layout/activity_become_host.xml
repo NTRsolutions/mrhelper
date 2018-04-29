@@ -151,6 +151,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
                         android:hint="Phone No."
+                        android:inputType="number"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -305,7 +306,7 @@
                         android:textSize="18dp"
                         android:textStyle="normal" />
 
-                    <LinearLayout
+                    <LinearLayout android:id="@+id/idproofLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -344,7 +345,7 @@
                         android:textSize="18dp"
                         android:textStyle="normal" />
 
-                    <LinearLayout
+                    <LinearLayout android:id="@+id/uploadPicLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -396,7 +397,7 @@
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_blue_light"
+                    android:background="@color/colorPrimary"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp">

@@ -17,6 +17,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.adapters.RepairServiceAdapter;
@@ -96,15 +97,19 @@ public class RepairServiceAddToCardActivity extends AppCompatActivity {
         checkoutLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String snoList = addSnoValue();
-                Intent intent = new Intent(RepairServiceAddToCardActivity.this, AddressActivity.class);
-                intent.putExtra("ServiceName", ServiceName);
-                intent.putExtra("totalAmount", totalPrice);
-                intent.putExtra("NavigationFlag", 2);
-                intent.putExtra("Sno", sNo);
-                intent.putExtra("selectedValue", snoList);
-                intent.putExtra("NoOfService", addList.size());
-                startActivity(intent);
+                if (addList.size() > 0) {
+                    String snoList = addSnoValue();
+                    Intent intent = new Intent(RepairServiceAddToCardActivity.this, AddressActivity.class);
+                    intent.putExtra("ServiceName", ServiceName);
+                    intent.putExtra("totalAmount", totalPrice);
+                    intent.putExtra("NavigationFlag", 2);
+                    intent.putExtra("Sno", sNo);
+                    intent.putExtra("selectedValue", snoList);
+                    intent.putExtra("NoOfService", addList.size());
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(RepairServiceAddToCardActivity.this,"Please select at least one service",Toast.LENGTH_LONG).show();
+                }
 
               /*  if(totalAmount>599){
 
