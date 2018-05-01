@@ -176,4 +176,21 @@ public class ServiceCaller {
             }
         });
     }
+
+    //call service list data
+    public void callServiceListSrvice( final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.GetServicelist;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("repairService done", false);
+                }
+            }
+        });
+    }
+
 }

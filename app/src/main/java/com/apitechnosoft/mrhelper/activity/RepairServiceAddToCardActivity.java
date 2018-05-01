@@ -165,7 +165,7 @@ public class RepairServiceAddToCardActivity extends AppCompatActivity {
             addToCard.setPrice(floatPrice);
             addList.add(addToCard);
         }
-
+        // amount = price + ((gst/100)*price);
         //remove item from list
         private void removeCartValue(String sno, String Price) {
             for (int i = 0; i < addList.size(); i++) {

@@ -43,4 +43,6 @@ public class Contants {
     public static final String PartyData = "PartyMServices/getPartyMServices?service=";
 
     public static final String SavePartyData = "SaveServiceDetailParType/saveServicedetailpartype?";
+
+    public static final String GetServicelist = "ServiceList/getServicelist";
 }

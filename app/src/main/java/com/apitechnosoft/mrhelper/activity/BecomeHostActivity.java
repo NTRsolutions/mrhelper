@@ -20,17 +20,34 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
+import com.apitechnosoft.mrhelper.adapters.RepairExpandableListAdapter;
+import com.apitechnosoft.mrhelper.adapters.ServiceSpinnerAdapter;
+import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
+import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
+import com.apitechnosoft.mrhelper.framework.ServiceCaller;
+import com.apitechnosoft.mrhelper.models.ContentServicelist;
+import com.apitechnosoft.mrhelper.models.DetailListDashboarddata;
+import com.apitechnosoft.mrhelper.models.MenuheadingtData;
+import com.apitechnosoft.mrhelper.models.RepairContentData;
+import com.apitechnosoft.mrhelper.models.RepairItemsListParentModel;
+import com.apitechnosoft.mrhelper.models.Servicelist;
+import com.apitechnosoft.mrhelper.models.Submenu;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
+import com.apitechnosoft.mrhelper.utilities.Contants;
+import com.apitechnosoft.mrhelper.utilities.Utility;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +103,46 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         ArrayAdapter<String> postalAdapter = new ArrayAdapter<String>(this, R.layout.spinner_row, IDENTITY_PROOF_array);
         idProof.setAdapter(postalAdapter);
         idProof.setOnItemSelectedListener(new MyOnItemSelectedListener());
+
+        getservicelist();
+    }
+
+    private void getservicelist() {
+        if (Utility.isOnline(this)) {
+            final CircleDotDialog dotDialog = new CircleDotDialog(BecomeHostActivity.this);
+            dotDialog.show();
+            ServiceCaller serviceCaller = new ServiceCaller(this);
+            serviceCaller.callServiceListSrvice(new IAsyncWorkCompletedCallback() {
+                @Override
+                public void onDone(String result, boolean isComplete) {
+                    if (isComplete) {
+                        parseServiceData(result);
+                    } else {
+                        Utility.alertForErrorMessage(Contants.Error, BecomeHostActivity.this);
+                    }
+                    if (dotDialog.isShowing()) {
+                        dotDialog.dismiss();
+                    }
+                }
+            });
+        } else {
+            Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
+        }
+    }
+
+    private void parseServiceData(String result) {
+        ContentServicelist data = new Gson().fromJson(result, ContentServicelist.class);
+        if (data != null) {
+            Servicelist[] list = data.getServicelist();
+            if(list!=null){
+                ArrayList<Servicelist> serviceList = new ArrayList<Servicelist>(Arrays.asList(list));
+                if(serviceList!=null) {
+                    ServiceSpinnerAdapter spinnerAdapter = new ServiceSpinnerAdapter(BecomeHostActivity.this, serviceList);
+                    profession.setAdapter(spinnerAdapter);
+                    profession.setOnItemSelectedListener(new MyOnItemSelectedListener());
+                }
+            }
+        }
     }
 
     public class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
