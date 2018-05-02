@@ -10,54 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/wheredo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="Add to card"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/dimTextSize_16"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.AppBarLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/app_bar"
             android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Signup as a partner on Mr. Helper"
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
 
             <ScrollView
                 android:id="@+id/genInfoLayout"
@@ -81,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="Full Name"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -93,6 +49,10 @@
                         android:background="@drawable/troke_outlay"
                         android:hint="Full Name"
                         android:minHeight="50dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/cityName"
+                        android:textSize="16dp"
                         android:paddingLeft="5dp" />
 
                     <TextView
@@ -101,7 +61,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="YOUR CITY"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -112,6 +72,10 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
                         android:hint="YOUR CITY"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/phoneNo"
+                        android:textSize="16dp"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -121,7 +85,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="YOUR PRIMARY PROFESSION"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <Spinner
@@ -140,7 +104,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text=" Phone No."
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -153,6 +117,10 @@
                         android:hint="Phone No."
                         android:inputType="number"
                         android:minHeight="50dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/designation"
+                        android:textSize="16dp"
                         android:paddingLeft="5dp" />
 
 
@@ -162,7 +130,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="DESIGNATION"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -174,6 +142,10 @@
                         android:background="@drawable/troke_outlay"
                         android:hint="DESIGNATION:"
                         android:minHeight="50dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/basicDetails"
+                        android:textSize="16dp"
                         android:paddingLeft="5dp" />
 
 
@@ -182,8 +154,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
-                        android:text="BASIC DETAILS:"
-                        android:textSize="18dp"
+                        android:text="BASIC DETAILS"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -193,7 +165,11 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
-                        android:hint="BASIC DETAILS::"
+                        android:hint="BASIC DETAILS"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/adress"
+                        android:textSize="16dp"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -204,7 +180,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="ADDRESS"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -214,7 +190,11 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
-                        android:hint="ADDRESS:::"
+                        android:hint="ADDRESS"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/idNo"
+                        android:textSize="16dp"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -224,7 +204,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="IDENTITY PROOF TYPE:"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <Spinner
@@ -243,7 +223,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="IDENTITY PROOF NUMBER:"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -253,7 +233,11 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
-                        android:hint="IDENTITY PROOF NUMBER:"
+                        android:hint="IDENTITY PROOF NUMBER"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/rateRange"
+                        android:textSize="16dp"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -262,8 +246,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
-                        android:text="RATE/ PRICE RANCE:"
-                        android:textSize="18dp"
+                        android:text="RATE/ PRICE RANCE"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -273,7 +257,11 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
-                        android:hint="RATE/ PRICE RANCE:"
+                        android:hint="RATE/ PRICE RANCE"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/emailId"
+                        android:textSize="16dp"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -282,8 +270,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
-                        android:text="Email ID : "
-                        android:textSize="18dp"
+                        android:text="Email ID "
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -293,7 +281,10 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/troke_outlay"
-                        android:hint="Email ID : "
+                        android:hint="Email ID"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="16dp"
                         android:minHeight="50dp"
                         android:paddingLeft="5dp" />
 
@@ -306,7 +297,8 @@
                         android:textSize="18dp"
                         android:textStyle="normal" />
 
-                    <LinearLayout android:id="@+id/idproofLayout"
+                    <LinearLayout
+                        android:id="@+id/idproofLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -320,6 +312,7 @@
                             android:background="@drawable/troke_outlay"
                             android:gravity="center"
                             android:padding="5dp"
+                            android:textSize="16dp"
                             android:text="Browse FIle..." />
 
 
@@ -342,10 +335,11 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="12dp"
                         android:text="UPLOAD PHOTO:"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="normal" />
 
-                    <LinearLayout android:id="@+id/uploadPicLayout"
+                    <LinearLayout
+                        android:id="@+id/uploadPicLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -360,6 +354,7 @@
                             android:background="@drawable/troke_outlay"
                             android:gravity="center"
                             android:padding="5dp"
+                            android:textSize="16dp"
                             android:text="Browse FIle..." />
 
 
@@ -409,7 +404,7 @@
                         android:gravity="center"
                         android:text="Sign Up"
                         android:textColor="#fff"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
 

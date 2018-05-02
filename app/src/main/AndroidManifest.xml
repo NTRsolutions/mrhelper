@@ -105,9 +105,10 @@
             android:name=".activity.PartyMServicesdataFourActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.BecomeHostActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ThankYouActivity"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+            android:label="Signup as a partner on Mr. Helper"/>
+        <activity
+            android:name=".activity.ThankYouActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

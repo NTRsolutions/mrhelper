@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -32,6 +33,7 @@ import com.apitechnosoft.mrhelper.adapters.ServiceSpinnerAdapter;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
 import com.apitechnosoft.mrhelper.framework.ServiceCaller;
+import com.apitechnosoft.mrhelper.models.ContentResponce;
 import com.apitechnosoft.mrhelper.models.ContentServicelist;
 import com.apitechnosoft.mrhelper.models.DetailListDashboarddata;
 import com.apitechnosoft.mrhelper.models.MenuheadingtData;
@@ -45,7 +47,15 @@ import com.apitechnosoft.mrhelper.utilities.Utility;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -62,13 +72,16 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
     EditText fullName, cityName, phoneNo, designation, basicDetails, adress, idNo, rateRange, emailId;
     Spinner profession, idProof;
     String fullNamestr, emailIdstr, rateRangestr, idNostr, adressstr, basicDetailsstr, designationstr, phoneNostr, cityNamestr;
+    String serviceName, idProofName;
+    boolean selectImageFlag = false;
+    String idProofImage, profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_become_host);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // setSupportActionBar(toolbar);
         initView();
     }
 
@@ -98,8 +111,23 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         emailId = (EditText) findViewById(R.id.emailId);
         adress = (EditText) findViewById(R.id.adress);
         profession = (Spinner) findViewById(R.id.profession);
+        profession.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                Servicelist service = (Servicelist) adapterView.getItemAtPosition(pos);
+                if (service != null) {
+                    serviceName = service.getService();
+                    //Toast.makeText(adapterView.getContext(), "The service is " + adapterView.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         idProof = (Spinner) findViewById(R.id.idProof);
-        String IDENTITY_PROOF_array[] = {"Select your option", "ADHAR", "PAN", "DL"};
+        String IDENTITY_PROOF_array[] = {"ADHAR", "PAN", "DL"};
         ArrayAdapter<String> postalAdapter = new ArrayAdapter<String>(this, R.layout.spinner_row, IDENTITY_PROOF_array);
         idProof.setAdapter(postalAdapter);
         idProof.setOnItemSelectedListener(new MyOnItemSelectedListener());
@@ -134,12 +162,12 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         ContentServicelist data = new Gson().fromJson(result, ContentServicelist.class);
         if (data != null) {
             Servicelist[] list = data.getServicelist();
-            if(list!=null){
+            if (list != null) {
                 ArrayList<Servicelist> serviceList = new ArrayList<Servicelist>(Arrays.asList(list));
-                if(serviceList!=null) {
+                if (serviceList != null) {
                     ServiceSpinnerAdapter spinnerAdapter = new ServiceSpinnerAdapter(BecomeHostActivity.this, serviceList);
                     profession.setAdapter(spinnerAdapter);
-                    profession.setOnItemSelectedListener(new MyOnItemSelectedListener());
+
                 }
             }
         }
@@ -149,12 +177,84 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
 
         public void onItemSelected(AdapterView<?> parent,
                                    View view, int pos, long id) {
-            // Toast.makeText(parent.getContext(), "The planet is " +parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
+            idProofName = parent.getItemAtPosition(pos).toString();
+            //Toast.makeText(parent.getContext(), "The proof is " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
         }
 
         public void onNothingSelected(AdapterView parent) {
             // Do nothing.
         }
+    }
+
+    private void callBcomeHost() {
+        if (Utility.isOnline(this)) {
+            final CircleDotDialog dotDialog = new CircleDotDialog(BecomeHostActivity.this);
+            dotDialog.show();
+            JSONObject obj = new JSONObject();
+            try {
+                String idproofName = "idproof" + System.currentTimeMillis() + ".png";
+                String profileName = "profile" + System.currentTimeMillis() + ".png";
+
+                JSONObject PATNERobj = new JSONObject();
+                JSONObject IDPROOFobj = new JSONObject();
+                JSONObject PROFILEobj = new JSONObject();
+
+                PATNERobj.put("service", serviceName);
+                PATNERobj.put("fullName", fullNamestr);
+                PATNERobj.put("mobileNo", phoneNostr);
+                PATNERobj.put("emailId", emailIdstr);
+                PATNERobj.put("address", adressstr);
+                PATNERobj.put("designation", designationstr);
+                PATNERobj.put("idproof", idProofName);
+                PATNERobj.put("idproofNumber", idNostr);
+                PATNERobj.put("city", cityNamestr);
+                PATNERobj.put("basicdetail", basicDetailsstr);
+                PATNERobj.put("pricerange", rateRangestr);
+                PATNERobj.put("fileName", profileName);
+                PATNERobj.put("idFileName", idproofName);
+
+                IDPROOFobj.put("fileName", idproofName);
+                IDPROOFobj.put("bytes", idProofImage);
+
+                PROFILEobj.put("fileName", profileName);
+                PROFILEobj.put("bytes", profileImage);
+
+                obj.put("PATNER", PATNERobj);
+                obj.put("IDPROOF", IDPROOFobj);
+                obj.put("PROFILE", PROFILEobj);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            ServiceCaller serviceCaller = new ServiceCaller(this);
+            serviceCaller.callBecomeHostSrvice(obj, new IAsyncWorkCompletedCallback() {
+                @Override
+                public void onDone(String result, boolean isComplete) {
+                    if (isComplete) {
+                        ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
+                        if (data != null) {
+                            if (data.isStatus()) {
+                                Toast.makeText(BecomeHostActivity.this, "Data save done.", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(BecomeHostActivity.this, HomeActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(BecomeHostActivity.this, "Data not save!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    } else {
+                        Utility.alertForErrorMessage(Contants.Error, BecomeHostActivity.this);
+                    }
+                    if (dotDialog.isShowing()) {
+                        dotDialog.dismiss();
+                    }
+                }
+            });
+        } else {
+            Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
+        }
+
     }
 
     // ----validation -----
@@ -202,6 +302,12 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         } else if (!emailIdstr.matches(emailRegex)) {
             showToast("Please Enter valid E-mail Address");
             return false;
+        } else if (idProofImage.length() == 0) {
+            showToast("Please select Id proof image");
+            return false;
+        } else if (profileImage.length() == 0) {
+            showToast("Please select profile image");
+            return false;
         }
         return true;
     }
@@ -214,18 +320,20 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.idproofLayout:
+                selectImageFlag = true;
                 if (checkRuntimePermission()) {
                     selectImage();
                 }
                 break;
             case R.id.uploadPicLayout:
+                selectImageFlag = false;
                 if (checkRuntimePermission()) {
                     selectImage();
                 }
                 break;
             case R.id.nextButtonLayout:
                 if (isValidate()) {
-
+                    callBcomeHost();
                 }
                 break;
         }
@@ -254,12 +362,12 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
 
     //open camera
     private void cameraIntent() {
-        // Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //  startActivityForResult(intent, REQUEST_CAMERA);
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+       /* Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.png");
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
+        startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);*/
     }
 
     //select image from android.widget.Gallery
@@ -277,82 +385,40 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_PHOTO)
                 onSelectFromGalleryResult(data);
-            else if (requestCode == CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE) {
-                onCaptureImageResult();
+            else if (requestCode == REQUEST_CAMERA) {
+                onCaptureImageResult(data);
             }
-            //onCaptureImageResult(data);
         }
     }
 
     private void onSelectFromGalleryResult(Intent data) {
         Uri uri = null;
         if (data != null) {
-           /* try {
-                if (profileListItems != null && profileListItems.size() != 0) {
-                    profileListItems.clear();
-                }
+            try {
                 uri = data.getData();
-                // bm = MediaStore.Images.Media.getBitmap(context.getContentResolver(), data.getData());
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                final InputStream imageStream = getContentResolver().openInputStream(uri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                if (selectImageFlag) {
+                    idProofImage = Utility.encodeToBase64(selectedImage, Bitmap.CompressFormat.PNG, 100);
+                } else {
+                    profileImage = Utility.encodeToBase64(selectedImage, Bitmap.CompressFormat.PNG, 100);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
-            }*/
+            }
         }
-        if (uri != null) {
-            // profile_image.setImageURI(uri);
-            // Picasso.with(BecomeHostActivity.this).load(uri).placeholder(R.drawable.userimage).into(profile_image);
-            // addUriAsFile(uri);
-        }
+
     }
 
-    private void onCaptureImageResult() {
-
-        //Get our saved file into a bitmap object:
-
-        /*File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-        Bitmap bitmap = setPic(file.getAbsolutePath());
-        // Bitmap bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 1000, 700);
-        if (bitmap != null) {
-            profile_image.setImageBitmap(bitmap);
-            if (file != null && file.exists()) {
-                AttechedFile attechedFile = new AttechedFile();
-                attechedFile.setAttacheFile(file);
-                attechedFile.setPdf(false);
-                attechedFile.setFileName(System.currentTimeMillis() + ".png");
-                profileListItems.add(attechedFile);
-            }
-            //   Uri uri = Utility.getImageUri(context, bitmap);
-            //   addUriAsFile(uri);
-        }*/
-
-
-		  /*  Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-			Uri uri = Utility.getImageUri(context, thumbnail);
-			if (profileListItems != null && profileListItems.size() != 0) {
-				profileListItems.clear();
-			}
-			if (uri != null) {
-			  //  profile_image.setImageURI(uri);
-			   Picasso.with(context).load(uri).placeholder(R.drawable.userimage).into(profile_image);
-				addUriAsFile(uri);
-			}*/
-		 /*   ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-			//thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-
-			File destination = new File(Environment.getExternalStorageDirectory(),
-					System.currentTimeMillis() + ".jpg");
-
-			FileOutputStream fo;
-			try {
-				destination.createNewFile();
-				fo = new FileOutputStream(destination);
-				fo.write(bytes.toByteArray());
-				fo.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
-
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        Uri uri = Utility.getImageUri(BecomeHostActivity.this, thumbnail);
+        if (selectImageFlag) {
+            idProofImage = Utility.encodeToBase64(thumbnail, Bitmap.CompressFormat.PNG, 100);
+        } else {
+            profileImage = Utility.encodeToBase64(thumbnail, Bitmap.CompressFormat.PNG, 100);
+        }
     }
 
     @Override

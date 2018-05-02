@@ -45,4 +45,5 @@ public class Contants {
     public static final String SavePartyData = "SaveServiceDetailParType/saveServicedetailpartype?";
 
     public static final String GetServicelist = "ServiceList/getServicelist";
+    public static final String BecomeHost = "SavePaertnerform/savepaertnerform";
 }

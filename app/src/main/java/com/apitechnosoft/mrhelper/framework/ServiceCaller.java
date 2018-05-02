@@ -192,5 +192,19 @@ public class ServiceCaller {
             }
         });
     }
+    //call become host service
+    public void callBecomeHostSrvice(JSONObject obj, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
+        final String url = Contants.SERVICE_BASE_URL + Contants.BecomeHost;
+        new ServiceHelper().callService(url, obj, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("becomehostService done", false);
+                }
+            }
+        });
+    }
 }
