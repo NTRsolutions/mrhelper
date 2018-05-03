@@ -207,4 +207,20 @@ public class ServiceCaller {
             }
         });
     }
+
+    //call login service
+    public void callLoginSrvice(String username,String password, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.Login+"username="+username+"&"+"password="+password;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("loginService done", false);
+                }
+            }
+        });
+    }
 }

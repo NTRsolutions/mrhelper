@@ -30,14 +30,15 @@
                     android:layout_marginTop="@dimen/dimValue_10"
                     android:orientation="vertical">
 
-                    <TextView android:id="@+id/yoursercive"
+                    <TextView
+                        android:id="@+id/yoursercive"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Your Service Expert in Bhopal"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/dimTextSize_16" />
+                        android:textSize="@dimen/dimTextSize_16"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -54,12 +55,13 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.4"
-                        android:paddingBottom="@dimen/dimValue_10"
-                        android:paddingTop="@dimen/dimValue_10"
                         android:background="@color/search_color"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/dimValue_10"
+                        android:paddingTop="@dimen/dimValue_10">
 
-                        <TextView android:id="@+id/locationName"
+                        <TextView
+                            android:id="@+id/locationName"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.8"
@@ -74,8 +76,8 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.2"
-                            android:text="ico"
                             android:gravity="center"
+                            android:text="ico"
                             android:textColor="@color/white"
                             android:textSize="@dimen/dimTextSize_16" />
                     </LinearLayout>
@@ -85,43 +87,33 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.7"
+                        android:orientation="horizontal"
                         android:paddingBottom="@dimen/dimValue_10"
-                        android:paddingTop="@dimen/dimValue_10"
-                        android:orientation="horizontal">
+                        android:paddingTop="@dimen/dimValue_10">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="0.8"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/dimValue_5"
-                            android:text="Search for a service"
+                            android:layout_weight="0.8"
                             android:gravity="left|center"
+                            android:text="Search for a service"
                             android:textColor="@color/secondary_text"
                             android:textSize="@dimen/dimTextSize_12" />
 
                         <TextView
                             android:id="@+id/searchicon"
                             android:layout_width="0dp"
-                            android:layout_weight="0.2"
                             android:layout_height="match_parent"
-                            android:text="icon"
+                            android:layout_weight="0.2"
                             android:gravity="center"
+                            android:text="icon"
                             android:textColor="@color/secondary_text"
                             android:textSize="@dimen/dimTextSize_16" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="120dp" >
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/pager"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_alignParentTop="true" />
-
-            </RelativeLayout>
             <android.support.v4.widget.NestedScrollView
                 android:id="@+id/allserviceLayout"
                 android:layout_width="match_parent"
@@ -132,6 +124,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="120dp">
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/pager"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_alignParentTop="true" />
+
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -598,16 +602,16 @@
                     android:id="@+id/menusearchicon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ab"
                     android:gravity="center"
+                    android:text="ab"
                     android:textColor="@color/search_color"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Search"
                     android:gravity="center"
+                    android:text="Search"
                     android:textColor="@color/search_color"
                     android:textSize="@dimen/dimTextSize_12" />
 
@@ -625,20 +629,21 @@
                     android:id="@+id/mybookingicon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ab"
                     android:gravity="center"
+                    android:text="ab"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="My Booings"
                     android:gravity="center"
+                    android:text="My Booings"
                     android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/becomeHost"
                 android:layout_width="0dp"
@@ -651,20 +656,21 @@
                     android:id="@+id/hosticon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ab"
                     android:gravity="center"
+                    android:text="ab"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Become A Professional"
                     android:textColor="#fff"
-                    android:gravity="center"
                     android:textSize="@dimen/dimTextSize_12" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/profile"
                 android:layout_width="0dp"
@@ -677,16 +683,16 @@
                     android:id="@+id/profileicon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ab"
                     android:gravity="center"
+                    android:text="ab"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimTextSize_16" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Profile"
                     android:gravity="center"
+                    android:text="Profile"
                     android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 

@@ -46,4 +46,5 @@ public class Contants {
 
     public static final String GetServicelist = "ServiceList/getServicelist";
     public static final String BecomeHost = "SavePaertnerform/savepaertnerform";
+    public static final String Login = "login/dologin?";
 }
