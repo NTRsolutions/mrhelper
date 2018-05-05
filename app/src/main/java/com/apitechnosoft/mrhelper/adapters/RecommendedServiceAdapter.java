@@ -6,6 +6,7 @@ import android.graphics.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,8 +43,7 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
     private ArrayList<?> relist;
     public Context mContext;
     public int dataId;
-    public String type="";
-    public int sno;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView recoText;
         public ImageView recoImg;
@@ -58,20 +58,20 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
     }
 
 
-    public RecommendedServiceAdapter(Context mContext, ArrayList<?> relist,int dataId) {
+    public RecommendedServiceAdapter(Context mContext, ArrayList<?> relist, int dataId) {
         this.relist = relist;
-        this.mContext=mContext;
-        this.dataId=dataId;
+        this.mContext = mContext;
+        this.dataId = dataId;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
-        if(dataId==1) {
-             itemView = LayoutInflater.from(parent.getContext())
+        if (dataId == 1) {
+            itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recommended_service_list_row, parent, false);
-        }else{
-             itemView = LayoutInflater.from(parent.getContext())
+        } else {
+            itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.other_home_service_row, parent, false);
         }
 
@@ -79,99 +79,81 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        String title="";
-        String image="";
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        String title = "";
+        String image = "";
 
-        if(dataId==1){
+        if (dataId == 1) {
             RecommendedServicesdata Obj = (RecommendedServicesdata) relist.get(position);
-            sno=Obj.getSno();
-            type=Obj.getType();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
             //String[] parts = filePath.split("webapps");
             //String part2 = parts[1];
-            if(filePath!=null && !filePath.equals("")) {
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==2){
+        if (dataId == 2) {
             Repairsdata Obj = (Repairsdata) relist.get(position);
-            sno=Obj.getSno();
-            type=Obj.getType();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==3){
+        if (dataId == 3) {
             HomeCleaningdata Obj = (HomeCleaningdata) relist.get(position);
-            sno=Obj.getSno();
-            type=Obj.getType();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==4){
+        if (dataId == 4) {
             ShiftingHomesdata Obj = (ShiftingHomesdata) relist.get(position);
-            sno=Obj.getSno();
-            type=Obj.getType();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==5){
+        if (dataId == 5) {
             HomeDesigndata Obj = (HomeDesigndata) relist.get(position);
-            type=Obj.getType();
-            sno=Obj.getSno();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==6){
+        if (dataId == 6) {
             WeddingServicesdata Obj = (WeddingServicesdata) relist.get(position);
-            type=Obj.getType();
-            sno=Obj.getSno();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==7){
+        if (dataId == 7) {
             PartyandEventdata Obj = (PartyandEventdata) relist.get(position);
-            type=Obj.getType();
-            sno=Obj.getSno();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==8){
+        if (dataId == 8) {
             HelpForBusinesdata Obj = (HelpForBusinesdata) relist.get(position);
-            type=Obj.getType();
-            sno=Obj.getSno();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
             }
         }
-        if(dataId==9){
+        if (dataId == 9) {
             OtherServiecsdata Obj = (OtherServiecsdata) relist.get(position);
-            type=Obj.getType();
-            sno=Obj.getSno();
-            title=Obj.getImageDescription();
-            String filePath=Obj.getFilePath();
-            if(filePath!=null && !filePath.equals("")) {
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
                 image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
                 //image = replacedString + Obj.getFileName();
             }
@@ -179,10 +161,10 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
 
         holder.recoText.setText(title);
         //Contants.ImageUrl+reObj.getFileName();
-        String imageWithoutSpaces = image.replaceAll("\\s+","");
-        if(dataId==1) {
+        String imageWithoutSpaces = image.replaceAll("\\s+", "");
+        if (dataId == 1) {
             Picasso.with(mContext).load(imageWithoutSpaces).resize(400, 250).placeholder(R.drawable.logo).into(holder.recoImg);
-        }else{
+        } else {
             Picasso.with(mContext).load(imageWithoutSpaces).resize(200, 200).placeholder(R.drawable.logo).into(holder.recoImg);
         }
         /*  Glide.with(mContext).load(Contants.ImageUrl+reObj.getFileName())
@@ -195,18 +177,65 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(type.equals("Sal1")){
+                String type = "";
+                int sno = 0;
+                if (dataId == 1) {
+                    RecommendedServicesdata Obj = (RecommendedServicesdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 2) {
+                    Repairsdata Obj = (Repairsdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 3) {
+                    HomeCleaningdata Obj = (HomeCleaningdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 4) {
+                    ShiftingHomesdata Obj = (ShiftingHomesdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 5) {
+                    HomeDesigndata Obj = (HomeDesigndata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 6) {
+                    WeddingServicesdata Obj = (WeddingServicesdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 7) {
+                    PartyandEventdata Obj = (PartyandEventdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 8) {
+                    HelpForBusinesdata Obj = (HelpForBusinesdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 9) {
+                    OtherServiecsdata Obj = (OtherServiecsdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (type.equals("Sal1")) {
                     Intent intent = new Intent(mContext, Sal1ServiceActivity.class);
                     intent.putExtra("sNumber", sno);
                     mContext.startActivity(intent);
-                }else if (type.equals("PartyM1")) {
+                } else if (type.equals("PartyM1")) {
                     Intent intent = new Intent(mContext, PartyServiceActivity.class);
-                     intent.putExtra("sNumber", sno);
+                    intent.putExtra("sNumber", sno);
                     mContext.startActivity(intent);
 
-                }else if (type.equals("Repair")) {
+                } else if (type.equals("Repair")) {
                     Intent intent = new Intent(mContext, RepairServiceActivity.class);
-                     intent.putExtra("sNumber", sno);
+                    intent.putExtra("sNumber", sno);
                     mContext.startActivity(intent);
                 }
             }
