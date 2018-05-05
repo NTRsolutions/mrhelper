@@ -20,8 +20,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -75,6 +77,7 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
     String serviceName, idProofName;
     boolean selectImageFlag = false;
     String idProofImage, profileImage;
+    ImageView idproofImageview, profileImageview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,14 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         idproofLayout.setOnClickListener(this);
         uploadPicLayout.setOnClickListener(this);
         nextButtonLayout.setOnClickListener(this);
+        Button idproofbutton = (Button) findViewById(R.id.idproofbutton);
+        idproofbutton.setOnClickListener(this);
+        Button uploadbutton = (Button) findViewById(R.id.uploadbutton);
+        uploadbutton.setOnClickListener(this);
+        idproofImageview = (ImageView) findViewById(R.id.idproofImage);
+        profileImageview = (ImageView) findViewById(R.id.profileImage);
+
+
         fullName = (EditText) findViewById(R.id.fullName);
         cityName = (EditText) findViewById(R.id.cityName);
         phoneNo = (EditText) findViewById(R.id.phoneNo);
@@ -319,13 +330,13 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.idproofLayout:
+            case R.id.idproofbutton:
                 selectImageFlag = true;
                 if (checkRuntimePermission()) {
                     selectImage();
                 }
                 break;
-            case R.id.uploadPicLayout:
+            case R.id.uploadbutton:
                 selectImageFlag = false;
                 if (checkRuntimePermission()) {
                     selectImage();
@@ -396,13 +407,16 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         if (data != null) {
             try {
                 uri = data.getData();
+
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                 final InputStream imageStream = getContentResolver().openInputStream(uri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 if (selectImageFlag) {
                     idProofImage = Utility.encodeToBase64(selectedImage, Bitmap.CompressFormat.PNG, 100);
+                    Picasso.with(BecomeHostActivity.this).load(uri).resize(100, 80).placeholder(R.drawable.imageplaceholder).into(idproofImageview);
                 } else {
                     profileImage = Utility.encodeToBase64(selectedImage, Bitmap.CompressFormat.PNG, 100);
+                    Picasso.with(BecomeHostActivity.this).load(uri).resize(100, 80).placeholder(R.drawable.imageplaceholder).into(profileImageview);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -416,8 +430,10 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
         Uri uri = Utility.getImageUri(BecomeHostActivity.this, thumbnail);
         if (selectImageFlag) {
             idProofImage = Utility.encodeToBase64(thumbnail, Bitmap.CompressFormat.PNG, 100);
+            Picasso.with(BecomeHostActivity.this).load(uri).resize(100, 80).placeholder(R.drawable.imageplaceholder).into(idproofImageview);
         } else {
             profileImage = Utility.encodeToBase64(thumbnail, Bitmap.CompressFormat.PNG, 100);
+            Picasso.with(BecomeHostActivity.this).load(uri).resize(100, 80).placeholder(R.drawable.imageplaceholder).into(profileImageview);
         }
     }
 

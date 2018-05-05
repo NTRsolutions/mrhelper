@@ -228,31 +228,34 @@
                         android:id="@+id/idproofLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/troke_outlay">
+                        android:layout_marginTop="5dp">
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:id="@+id/idproofbutton"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
+                            android:layout_weight="0.4"
                             android:background="@drawable/troke_outlay"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Browse FIle..."
-                            android:textSize="14dp" />
+                            android:text="Browse FIle"
+                            android:textSize="12dp" />
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="0.6"
+                            android:padding="5dp"
+                            android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/idProfImage"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:hint="No File Selected"
-                            android:textSize="14dp" />
-
+                            <ImageView
+                                android:id="@+id/idproofImage"
+                                android:layout_width="100dp"
+                                android:layout_height="80dp"
+                                android:src="@drawable/imageplaceholder" />
+                        </LinearLayout>
                     </LinearLayout>
 
 
@@ -269,31 +272,35 @@
                         android:id="@+id/uploadPicLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/troke_outlay"
-                        android:padding="5dp">
+                        android:layout_marginTop="5dp">
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:id="@+id/uploadbutton"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
                             android:background="@drawable/troke_outlay"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Browse FIle..."
-                            android:textSize="14dp" />
+                            android:text="Browse FIle"
+                            android:textSize="12dp" />
 
 
-                        <TextView
-                            android:id="@+id/userImage"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:hint="No Image Selected"
-                            android:textSize="14dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="0.6"
+                            android:padding="5dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/profileImage"
+                                android:layout_width="100dp"
+                                android:layout_height="80dp"
+                                android:src="@drawable/imageplaceholder" />
+                        </LinearLayout>
 
                     </LinearLayout>
 

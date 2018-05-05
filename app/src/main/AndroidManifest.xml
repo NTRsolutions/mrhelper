@@ -104,11 +104,19 @@
         <activity
             android:name=".activity.PartyMServicesdataFourActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.BecomeHostActivity"
-            android:label="Signup as a partner on Mr. Helper"/>
+        <activity
+            android:name=".activity.BecomeHostActivity"
+            android:label="Signup as a partner on Mr. Helper" />
         <activity
             android:name=".activity.ThankYouActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:label="My Profile" />
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="About Mrhelper" />
+        <activity android:name=".activity.PaymentConfirmActivity"></activity>
     </application>
 
 </manifest>

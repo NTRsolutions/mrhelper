@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".activity.ProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dimValue_10"
+                android:background="#fff"
+                android:orientation="horizontal">
+
+                <com.apitechnosoft.mrhelper.utilities.CircleImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/userp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimValue_10"
+                    android:layout_marginRight="@dimen/dimValue_5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="user name"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_14" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dimValue_5"
+                        android:layout_marginTop="@dimen/dimValue_5"
+                        android:text="user@gmail.com"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="@dimen/dimTextSize_12" />
+
+                    <TextView
+                        android:id="@+id/phoneno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1234567890"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="@dimen/dimTextSize_12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dimValue_10"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/registerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimValue_5"
+                    android:paddingTop="@dimen/dimValue_5">
+
+                    <TextView
+                        android:id="@+id/registereIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ic"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_18" />
+
+                    <TextView
+                        android:id="@+id/register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:text="Register as a Partner"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/aboutLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimValue_5"
+                    android:paddingTop="@dimen/dimValue_5">
+
+                    <TextView
+                        android:id="@+id/aboutIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ic"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_18" />
+
+                    <TextView
+                        android:id="@+id/aboutus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:text="About MrHelper"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/shareappLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimValue_5"
+                    android:paddingTop="@dimen/dimValue_5">
+
+                    <TextView
+                        android:id="@+id/shareIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ic"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_18" />
+
+                    <TextView
+                        android:id="@+id/shareapp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:text="Share MrHelper"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_14" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

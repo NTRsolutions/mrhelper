@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AboutUsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/registerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimValue_10"
+            android:layout_marginRight="@dimen/dimValue_10"
+            android:layout_marginBottom="@dimen/dimValue_20"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aboutus1"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_16"
+                android:text="@string/aboutus2"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_16"
+                android:text="@string/aboutus3"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_16"
+                android:text="USP (Unique Selling Point)"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_16"
+                android:text=". Linking businesses to customers"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_16"
+                android:text=". Providing all suitable opportunities to the service providers and entrepreneurs to expand their businesses"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_16"
+                android:text=". To cater to the daily needs of working couples who follow busy schedules by providing them quality services at affordable price without costing them a loss of work and office"
+                android:textColor="#000"
+                android:textSize="@dimen/dimTextSize_14" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

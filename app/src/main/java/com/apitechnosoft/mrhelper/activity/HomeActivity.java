@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -93,6 +94,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         searchlayout.setOnClickListener(this);
         LinearLayout selectlocation = (LinearLayout) findViewById(R.id.selectlocation);
         selectlocation.setOnClickListener(this);
+
 
         TextView menusearchicon = (TextView) findViewById(R.id.menusearchicon);
         menusearchicon.setTypeface(materialdesignicons_font);
@@ -215,7 +217,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 openScreen(LoginActivity.class);
                 break;
             case R.id.profile:
-                openScreen(LoginActivity.class);
+                openScreen(ProfileActivity.class);
                 break;
             case R.id.becomeHost:
                 openScreen(BecomeHostActivity.class);

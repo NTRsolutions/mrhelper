@@ -6,13 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
@@ -23,27 +21,24 @@ import com.apitechnosoft.mrhelper.utilities.Contants;
 import com.apitechnosoft.mrhelper.utilities.FontManager;
 import com.apitechnosoft.mrhelper.utilities.Utility;
 
-public class OTPActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    EditText otpView;
-    private String dataUrl;
-    String otpViewStr;
+public class PaymentConfirmActivity extends AppCompatActivity implements View.OnClickListener {
+    private Typeface materialdesignicons_font;
     int NavigationFlag;
     String ServiceName;
+    private String dataUrl;
+    TextView totalservice, serviceamount, amountservicetax;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp);
-        chechPortaitAndLandSacpe();//chech Portait And LandSacpe Orientation
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_payment_confirm);
+        chechPortaitAndLandSacpe();
         initView();
     }
 
     //chech Portait And LandSacpe Orientation
     public void chechPortaitAndLandSacpe() {
-        if (CompatibilityUtility.isTablet(OTPActivity.this)) {
+        if (CompatibilityUtility.isTablet(PaymentConfirmActivity.this)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -51,54 +46,59 @@ public class OTPActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        materialdesignicons_font = FontManager.getFontTypefaceMaterialDesignIcons(getApplicationContext(), "fonts/materialdesignicons-webfont.otf");
+        TextView font_cash = (TextView) findViewById(R.id.font_cash);
+        TextView payonline = (TextView) findViewById(R.id.arrow_icon);
+        font_cash.setTypeface(materialdesignicons_font);
+        font_cash.setText(Html.fromHtml("&#xf1af;"));
+        payonline.setTypeface(materialdesignicons_font);
+        payonline.setText(Html.fromHtml("&#xf19c;"));
+        LinearLayout onlineLayout = (LinearLayout) findViewById(R.id.onlineLayout);
+        onlineLayout.setOnClickListener(this);
+        LinearLayout codLayout = (LinearLayout) findViewById(R.id.codLayout);
+        codLayout.setOnClickListener(this);
+
+        totalservice = (TextView) findViewById(R.id.totalservice);
+        serviceamount = (TextView) findViewById(R.id.serviceamount);
+        amountservicetax = (TextView) findViewById(R.id.amountservicetax);
+        EditText promocode = (EditText) findViewById(R.id.promocode);
+
         NavigationFlag = getIntent().getIntExtra("NavigationFlag", 0);
 
         ServiceName = getIntent().getStringExtra("ServiceName");
-        final String Phone = getIntent().getStringExtra("Phone");
         //come from repair screen
         if (NavigationFlag == 2) {
-           // getData();
+            getData();
         }
         //come from party screen
         if (NavigationFlag == 1) {
             SharedPreferences prefs = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE);
             ServiceName = prefs.getString("heading", "");
-            //getPartyStepData();
+            getPartyStepData();
         }
-
-        TextView wheredo = (TextView) toolbar.findViewById(R.id.wheredo);
-        wheredo.setText("Best " + ServiceName + " in This Area");
-
-        Typeface materialdesignicons_font = FontManager.getFontTypefaceMaterialDesignIcons(this, "fonts/materialdesignicons-webfont.otf");
-        TextView arrowicon = (TextView) findViewById(R.id.arrowicon);
-        arrowicon.setTypeface(materialdesignicons_font);
-        arrowicon.setText(Html.fromHtml("&#xf054;"));
-        TextView mobileno = (TextView) findViewById(R.id.mobileno);
-        mobileno.setText(Phone);
-        otpView = (EditText) findViewById(R.id.otpView);
-
-        LinearLayout nextButtonLayout = (LinearLayout) findViewById(R.id.nextButtonLayout);
-        nextButtonLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isValidate()) {
-                    Intent intent = new Intent(OTPActivity.this, PaymentConfirmActivity.class);
-                    intent.putExtra("ServiceName", ServiceName);
-                    intent.putExtra("NavigationFlag", NavigationFlag);
-                    startActivity(intent);
-                   /* if (NavigationFlag == 1) {
-                        getSavePartyService();
-                    } else {
-                        getSaveService();
-                    }*/
-                }
-            }
-        });
-
-
     }
 
-   /* private void getData() {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.onlineLayout:
+                COD();
+                break;
+            case R.id.codLayout:
+                COD();
+                break;
+        }
+    }
+
+    private void COD() {
+        if (NavigationFlag == 1) {
+            getSavePartyService();
+        } else {
+            getSaveService();
+        }
+    }
+
+    private void getData() {
         SharedPreferences prefs = getSharedPreferences("SaveDataPre", MODE_PRIVATE);
         String houneNoStr = prefs.getString("houneNoStr", "");
         String locationstr = prefs.getString("locationstr", "");
@@ -115,6 +115,15 @@ public class OTPActivity extends AppCompatActivity {
         int NoOfService = prefs.getInt("NoOfService", 0);
         double gstTax = ((18 / 100) * totalAmount);
         double aftertaxamount = gstTax + totalAmount;
+        if (NoOfService != 0) {
+            totalservice.setText(NoOfService + "");
+        }
+        if (totalAmount != 0) {
+            serviceamount.setText(totalAmount + "");
+        }
+        if (aftertaxamount != 0) {
+            amountservicetax.setText(aftertaxamount + "");
+        }
 
         dataUrl = "servicesno=" + sno + "&password=" + passwordstr + "&email=" + emailaddressStr + "&section_home_service_sno=" + selectedValueSno + "&totalservice=" + NoOfService + "&name=" + nameStr + "&mobileno=" + mobileNostr + "&serviceamount=" + totalAmount + "&aftertaxamount=" + aftertaxamount + " &servicetime=" + timeViewStr + "&servicedate=" + caladerDateStr + "&houseno=" + houneNoStr + "&location=" + locationstr + "&landmark=" + landMarkStr + "&servicename=" + sno + "";
     }
@@ -142,40 +151,28 @@ public class OTPActivity extends AppCompatActivity {
         ServiceName = Stepprefs.getString("heading", "");
         int SNo = Stepprefs.getInt("Sno", 0);
         dataUrl = "step1=" + Step + "&step2=" + Step1 + "&step3=" + Step2 + "&step4=" + Step3 + "&step5=" + Step4 + "&password=" + passwordstr + "&emailid=" + emailaddressStr + "&name=" + nameStr + "&mobileno=" + mobileNostr + "&servicedate=" + caladerDateStr + "&houseno=" + houneNoStr + "&location=" + locationstr + "&landmark=" + landMarkStr + "&servicename=" + SNo + "";
-    }*/
-
-    private boolean isValidate() {
-
-        String emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-        otpViewStr = otpView.getText().toString();
-
-        if (otpViewStr.length() == 0) {
-            Toast.makeText(this, "Please Enter OTP No", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        return true;
     }
 
-   /* private void getSaveService() {
+    private void getSaveService() {
         if (Utility.isOnline(this)) {
-            final CircleDotDialog dotDialog = new CircleDotDialog(OTPActivity.this);
+            final CircleDotDialog dotDialog = new CircleDotDialog(PaymentConfirmActivity.this);
             dotDialog.show();
             ServiceCaller serviceCaller = new ServiceCaller(this);
             serviceCaller.callSaveService(dataUrl, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    Intent intent = new Intent(OTPActivity.this, ThankYouActivity.class);
+                    Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 
                     SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
                     editor.clear();
                     editor.commit();
-                   *//* if (isComplete) {
+                   /* if (isComplete) {
 
                     } else {
                         Utility.alertForErrorMessage(Contants.Error, OTPActivity.this);
-                    }*//*
+                    }*/
                     if (dotDialog.isShowing()) {
                         dotDialog.dismiss();
                     }
@@ -189,13 +186,13 @@ public class OTPActivity extends AppCompatActivity {
 
     private void getSavePartyService() {
         if (Utility.isOnline(this)) {
-            final CircleDotDialog dotDialog = new CircleDotDialog(OTPActivity.this);
+            final CircleDotDialog dotDialog = new CircleDotDialog(PaymentConfirmActivity.this);
             dotDialog.show();
             ServiceCaller serviceCaller = new ServiceCaller(this);
             serviceCaller.callPartySaveService(dataUrl, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    Intent intent = new Intent(OTPActivity.this, ThankYouActivity.class);
+                    Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 
@@ -206,11 +203,11 @@ public class OTPActivity extends AppCompatActivity {
                     SharedPreferences.Editor Partyeditor = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE).edit();
                     Partyeditor.clear();
                     Partyeditor.commit();
-                   *//* if (isComplete) {
+                   /* if (isComplete) {
 
                     } else {
                         Utility.alertForErrorMessage(Contants.Error, OTPActivity.this);
-                    }*//*
+                    }*/
                     if (dotDialog.isShowing()) {
                         dotDialog.dismiss();
                     }
@@ -219,5 +216,5 @@ public class OTPActivity extends AppCompatActivity {
         } else {
             Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
         }
-    }*/
+    }
 }
