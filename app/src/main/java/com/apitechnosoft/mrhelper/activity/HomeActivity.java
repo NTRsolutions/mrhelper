@@ -29,9 +29,13 @@ import com.apitechnosoft.mrhelper.adapters.RecommendedServiceAdapter;
 import com.apitechnosoft.mrhelper.adapters.LocationListAdapter;
 import com.apitechnosoft.mrhelper.adapters.SlidingImage_Adapter_For_ItemDetails;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
+import com.apitechnosoft.mrhelper.database.DbHelper;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
 import com.apitechnosoft.mrhelper.framework.ServiceCaller;
+import com.apitechnosoft.mrhelper.models.Bookservicelist;
 import com.apitechnosoft.mrhelper.models.ContentData;
+import com.apitechnosoft.mrhelper.models.ContentMybooking;
+import com.apitechnosoft.mrhelper.models.ContentResponce;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
 import com.apitechnosoft.mrhelper.models.Searchreportdata;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
@@ -68,6 +72,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         chechPortaitAndLandSacpe();//chech Portait And LandSacpe Orientation
         setContentView(R.layout.activity_home);
         getHomedata();
+        callGetUserProfile();
+        getMyBooking();
         initView();
         slideimage();
     }
@@ -116,7 +122,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         TextView hosticon = (TextView) findViewById(R.id.hosticon);
         hosticon.setTypeface(materialdesignicons_font);
-        hosticon.setText(Html.fromHtml("&#xf009;"));
+        hosticon.setText(Html.fromHtml("&#xf2e8;"));
         LinearLayout becomeHost = (LinearLayout) findViewById(R.id.becomeHost);
         becomeHost.setOnClickListener(this);
         yoursercive = (TextView) findViewById(R.id.yoursercive);
@@ -214,7 +220,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 openScreen(HomeActivity.class);
                 break;
             case R.id.mybooking:
-                openScreen(LoginActivity.class);
+                openScreen(MyBookingActivity.class);
                 break;
             case R.id.profile:
                 openScreen(ProfileActivity.class);
@@ -378,7 +384,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    private static final Integer[] IMAGES = {R.drawable.homeservices_apps_main, R.drawable.how, R.drawable.download, R.drawable.screenshot,R.drawable.images};
+    private static final Integer[] IMAGES = {R.drawable.homeservices_apps_main, R.drawable.how, R.drawable.download, R.drawable.screenshot, R.drawable.images};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
     private void slideimage() {
@@ -439,4 +445,67 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 */
     }
 
+    private void callGetUserProfile() {
+        if (Utility.isOnline(this)) {
+            String phone = Utility.getUserPhoneNo(HomeActivity.this);
+            if (phone != null) {
+                ServiceCaller serviceCaller = new ServiceCaller(this);
+                serviceCaller.callUserProfileSrvice(phone, new IAsyncWorkCompletedCallback() {
+                    @Override
+                    public void onDone(String result, boolean isComplete) {
+                        if (isComplete) {
+                            ContentData data = new Gson().fromJson(result, ContentData.class);
+                            if (data != null) {
+                                if (data.getUser() != null) {
+                                    DbHelper dbHelper = new DbHelper(HomeActivity.this);
+                                    dbHelper.upsertUserData(data.getUser());
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+    }
+
+
+    private void getMyBooking() {
+        if (Utility.isOnline(this)) {
+            String phone = Utility.getUserPhoneNo(HomeActivity.this);
+            if (phone != null) {
+                final CircleDotDialog dotDialog = new CircleDotDialog(HomeActivity.this);
+                dotDialog.show();
+                ServiceCaller serviceCaller = new ServiceCaller(this);
+                serviceCaller.callMyBookingService(phone, new IAsyncWorkCompletedCallback() {
+                    @Override
+                    public void onDone(String result, boolean isComplete) {
+                        if (isComplete) {
+                            parseMyBookingData(result);
+                        } else {
+                            Utility.alertForErrorMessage("Data not Found!", HomeActivity.this);
+                        }
+                        if (dotDialog.isShowing()) {
+                            dotDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        } else {
+            Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
+        }
+    }
+
+    private void parseMyBookingData(String result) {
+        ContentMybooking data = new Gson().fromJson(result, ContentMybooking.class);
+        if (data != null) {
+            if (data.getBookservicelist() != null) {
+                DbHelper dbHelper = new DbHelper(HomeActivity.this);
+                dbHelper.deleteMyBookingData();
+                for (Bookservicelist bookservicelist : data.getBookservicelist()) {
+                    dbHelper.upsertMyBookingData(bookservicelist);
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimValue_5"
+    android:background="@color/white"
+    android:elevation="5dp"
+    app:cardCornerRadius="3dp">
+
+    <LinearLayout
+        android:id="@+id/repairservicelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dimValue_10"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/sewrvicename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generic Software Issues"
+            android:textSize="@dimen/dimTextSize_16"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimValue_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Service Amount"
+                android:textSize="@dimen/dimTextSize_16" />
+
+            <TextView
+                android:id="@+id/serviceamount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textSize="@dimen/dimTextSize_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimValue_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="After Tax Amount"
+                android:textSize="@dimen/dimTextSize_16" />
+
+            <TextView
+                android:id="@+id/aftertaxamount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textSize="@dimen/dimTextSize_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimValue_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Total Service"
+                android:textSize="@dimen/dimTextSize_16" />
+
+            <TextView
+                android:id="@+id/totalservice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="@dimen/dimTextSize_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimValue_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Service Date"
+                android:textSize="@dimen/dimTextSize_16" />
+
+            <TextView
+                android:id="@+id/entrydate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="May 4 ,2018"
+                android:textSize="@dimen/dimTextSize_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimValue_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Address-"
+                android:textStyle="bold"
+                android:textSize="@dimen/dimTextSize_16" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="@dimen/dimValue_5"
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/dimTextSize_16" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

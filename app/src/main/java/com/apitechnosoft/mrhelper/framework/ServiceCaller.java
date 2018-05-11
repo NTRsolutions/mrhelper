@@ -113,6 +113,7 @@ public class ServiceCaller {
             }
         });
     }
+
     //call otp data
     public void callOtpService(String mobileNostr, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
@@ -178,7 +179,7 @@ public class ServiceCaller {
     }
 
     //call service list data
-    public void callServiceListSrvice( final IAsyncWorkCompletedCallback workCompletedCallback) {
+    public void callServiceListSrvice(final IAsyncWorkCompletedCallback workCompletedCallback) {
 
         final String url = Contants.SERVICE_BASE_URL + Contants.GetServicelist;
         new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
@@ -192,6 +193,7 @@ public class ServiceCaller {
             }
         });
     }
+
     //call become host service
     public void callBecomeHostSrvice(JSONObject obj, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
@@ -209,9 +211,9 @@ public class ServiceCaller {
     }
 
     //call login service
-    public void callLoginSrvice(String username,String password, final IAsyncWorkCompletedCallback workCompletedCallback) {
+    public void callLoginSrvice(String username, String password, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
-        final String url = Contants.SERVICE_BASE_URL + Contants.Login+"username="+username+"&"+"password="+password;
+        final String url = Contants.SERVICE_BASE_URL + Contants.Login + "username=" + username + "&" + "password=" + password;
         new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
             @Override
             public void onDone(String doneWhatCode, String result, String error) {
@@ -219,6 +221,54 @@ public class ServiceCaller {
                     workCompletedCallback.onDone(result, true);
                 } else {
                     workCompletedCallback.onDone("loginService done", false);
+                }
+            }
+        });
+    }
+
+    //call get user profile service
+    public void callUserProfileSrvice(String phone, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.UserInfoService + phone;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("userprfileService done", false);
+                }
+            }
+        });
+    }
+
+    //call signup service
+    public void callSignUpSrvice(String phone, String password, String email, String name, String hnostr, String locationstr, String landmarkstr, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.UserRegistrationServices + "username=" + name + "&" + "password=" + password + "&" + "emailid=" + email + "&" + "mobileno=" + phone + "&" + "houseno=" + hnostr + "location=" + locationstr + "&" + "landmark=" + landmarkstr;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("signupService done", false);
+                }
+            }
+        });
+    }
+
+    //call my booking data
+    public void callMyBookingService(String pNumber, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.BookServicesCaller + pNumber;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("mybookingService done", false);
                 }
             }
         });

@@ -735,4 +735,29 @@ public class Utility {
         }
         return null;
     }
+
+
+    public static String getUserPhoneNo(Context context) {
+        String phone;
+        try {
+            SharedPreferences prefs = context.getSharedPreferences("UserPhonePreferences", Context.MODE_PRIVATE);
+            phone = prefs.getString("Phonenumber","");
+            return phone;
+        } catch (Exception e) {
+            Log.d(Contants.LOG_TAG, "Exception  - Phone" + e.getMessage());
+        }
+        return null;
+    }
+
+    public static void setUserPhoneNo(Context context,String phone) {
+        try {
+            SharedPreferences prefs = context.getSharedPreferences("UserPhonePreferences", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("Phonenumber", phone);
+            editor.commit();
+        } catch (Exception e) {
+            // should never happen
+            //   throw new RuntimeException("Could not get language: " + e);
+        }
+    }
 }

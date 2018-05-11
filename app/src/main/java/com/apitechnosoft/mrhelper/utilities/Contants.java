@@ -47,4 +47,8 @@ public class Contants {
     public static final String GetServicelist = "ServiceList/getServicelist";
     public static final String BecomeHost = "SavePaertnerform/savepaertnerform";
     public static final String Login = "login/dologin?";
+    public static final String UserInfoService = "UserInfoService/getuserInfoService?mobile=";
+    public static final String UserRegistrationServices = "UserRegistrationServices/doRegister?";
+    public static final String BookServicesCaller = "BookServicesCaller/getbookservices?mobileno=";
+
 }

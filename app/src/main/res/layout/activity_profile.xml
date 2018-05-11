@@ -40,7 +40,7 @@
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="user name"
+                        android:text="xx"
                         android:textColor="#000"
                         android:textSize="@dimen/dimTextSize_14" />
 
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dimValue_5"
                         android:layout_marginTop="@dimen/dimValue_5"
-                        android:text="user@gmail.com"
+                        android:text="xx"
                         android:textColor="@color/secondary_text"
                         android:textSize="@dimen/dimTextSize_12" />
 
@@ -58,7 +58,7 @@
                         android:id="@+id/phoneno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1234567890"
+                        android:text="xxxxxxxxxx"
                         android:textColor="@color/secondary_text"
                         android:textSize="@dimen/dimTextSize_12" />
 
@@ -154,7 +154,31 @@
                         android:textColor="#000"
                         android:textSize="@dimen/dimTextSize_14" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/logoutLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimValue_5"
+                    android:paddingTop="@dimen/dimValue_5">
 
+                    <TextView
+                        android:id="@+id/loginIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ic"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_18" />
+
+                    <TextView
+                        android:id="@+id/loginlogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimValue_10"
+                        android:text="Login"
+                        android:textColor="#000"
+                        android:textSize="@dimen/dimTextSize_14" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

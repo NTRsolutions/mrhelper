@@ -246,6 +246,7 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
                         ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
                         if (data != null) {
                             if (data.isStatus()) {
+                                Utility.setUserPhoneNo(BecomeHostActivity.this,phoneNostr);
                                 Toast.makeText(BecomeHostActivity.this, "Data save done.", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(BecomeHostActivity.this, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

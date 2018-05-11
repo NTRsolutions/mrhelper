@@ -1,5 +1,6 @@
 package com.apitechnosoft.mrhelper.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     Typeface materialdesignicons_font;
     EditText edt_phone, edt_password;
     String passwordstr, phoneStr;
+    boolean ProfileScreen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         password_icon.setTypeface(materialdesignicons_font);
         password_icon.setText(Html.fromHtml("&#xf33e;"));
 
-        TextView arrowicon = (TextView) findViewById(R.id.arrowicon);
-        arrowicon.setTypeface(materialdesignicons_font);
-        arrowicon.setText(Html.fromHtml("&#xf054;"));
+        //TextView arrowicon = (TextView) findViewById(R.id.arrowicon);
+        //arrowicon.setTypeface(materialdesignicons_font);
+       // arrowicon.setText(Html.fromHtml("&#xf054;"));
         edt_phone = (EditText) findViewById(R.id.edt_phone);
         edt_password = (EditText) findViewById(R.id.edt_password);
         LinearLayout loginbutton = (LinearLayout) findViewById(R.id.loginbutton);
@@ -61,7 +63,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
+        LinearLayout signupbutton = (LinearLayout) findViewById(R.id.signupbutton);
+        signupbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        Intent intent = getIntent();
+        if (intent != null) {
+            ProfileScreen = intent.getBooleanExtra("ProfileScreen", false);
+        }
     }
 
     //chech Portait And LandSacpe Orientation
@@ -81,23 +95,27 @@ public class LoginActivity extends AppCompatActivity {
             dotDialog.show();
 
             ServiceCaller serviceCaller = new ServiceCaller(this);
-            serviceCaller.callLoginSrvice(phoneStr,passwordstr, new IAsyncWorkCompletedCallback() {
+            serviceCaller.callLoginSrvice(phoneStr, passwordstr, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
                     if (isComplete) {
                         ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
                         if (data != null) {
                             if (data.isStatus()) {
-                                Toast.makeText(LoginActivity.this, "Data save done.", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                               /* Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                                // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtra("Number", no);
-                                startActivity(intent);*/
+                                Utility.setUserPhoneNo(LoginActivity.this, phoneStr);
+                                Toast.makeText(LoginActivity.this, "Login Successfully.", Toast.LENGTH_LONG).show();
+                                if (ProfileScreen) {
+                                    Intent returnIntent = new Intent();
+                                    //returnIntent.putExtra("result",result);
+                                    setResult(Activity.RESULT_OK, returnIntent);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                }
                             } else {
-                                Toast.makeText(LoginActivity.this, "Data not save!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Login not Successfully!", Toast.LENGTH_LONG).show();
                             }
                         }
                     } else {

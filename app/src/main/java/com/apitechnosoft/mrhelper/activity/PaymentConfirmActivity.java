@@ -27,7 +27,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
     String ServiceName;
     private String dataUrl;
     TextView totalservice, serviceamount, amountservicetax;
-
+    String usermobileNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +105,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         String landMarkStr = prefs.getString("landMarkStr", "");
         String nameStr = prefs.getString("nameStr", "");
         String mobileNostr = prefs.getString("mobileNostr", "");
+        usermobileNo=mobileNostr;
         String passwordstr = prefs.getString("passwordstr", "");
         String emailaddressStr = prefs.getString("emailaddressStr", "");
         String timeViewStr = prefs.getString("timeViewStr", "");
@@ -135,6 +136,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         String landMarkStr = prefs.getString("landMarkStr", "");
         String nameStr = prefs.getString("nameStr", "");
         String mobileNostr = prefs.getString("mobileNostr", "");
+        usermobileNo=mobileNostr;
         String passwordstr = prefs.getString("passwordstr", "");
         String emailaddressStr = prefs.getString("emailaddressStr", "");
         // String timeViewStr = prefs.getString("timeViewStr", "");
@@ -161,6 +163,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
             serviceCaller.callSaveService(dataUrl, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
+                    Utility.setUserPhoneNo(PaymentConfirmActivity.this,usermobileNo);
                     Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
@@ -192,6 +195,8 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
             serviceCaller.callPartySaveService(dataUrl, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
+                    Utility.setUserPhoneNo(PaymentConfirmActivity.this,usermobileNo);
+
                     Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

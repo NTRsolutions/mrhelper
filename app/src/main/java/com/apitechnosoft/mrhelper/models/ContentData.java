@@ -168,11 +168,21 @@ public class ContentData {
     {
         this.shiftingHomesdata = shiftingHomesdata;
     }
+    private User user;
 
+    public User getUser ()
+    {
+        return user;
+    }
+
+    public void setUser (User user)
+    {
+        this.user = user;
+    }
     @Override
     public String toString()
     {
-        return "ClassPojo [searchreportdata = "+searchreportdata+", helpForBusinesdata = "+helpForBusinesdata+", healthandwWllnessdata = "+healthandwWllnessdata+", repairsdata = "+repairsdata+", homeCleaningdata = "+homeCleaningdata+", partyandEventdata = "+partyandEventdata+", recommendedServicesdata = "+recommendedServicesdata+", bestMakeupArtistsdata = "+bestMakeupArtistsdata+", homeDesigndata = "+homeDesigndata+", sectionheaderdata = "+sectionheaderdata+", weddingServicesdata = "+weddingServicesdata+", locationreportdata = "+locationreportdata+", otherServiecsdata = "+otherServiecsdata+", shiftingHomesdata = "+shiftingHomesdata+"]";
+        return "ClassPojo [searchreportdata = "+searchreportdata+", helpForBusinesdata = "+helpForBusinesdata+", healthandwWllnessdata = "+healthandwWllnessdata+", repairsdata = "+repairsdata+", homeCleaningdata = "+homeCleaningdata+", partyandEventdata = "+partyandEventdata+", recommendedServicesdata = "+recommendedServicesdata+", bestMakeupArtistsdata = "+bestMakeupArtistsdata+", homeDesigndata = "+homeDesigndata+", sectionheaderdata = "+sectionheaderdata+", weddingServicesdata = "+weddingServicesdata+", locationreportdata = "+locationreportdata+", otherServiecsdata = "+otherServiecsdata+", shiftingHomesdata = "+shiftingHomesdata+",user = "+user+"]";
     }
 }
 
