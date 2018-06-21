@@ -197,8 +197,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public boolean upsertMyBookingData(Bookservicelist ob) {
         boolean done = false;
         Bookservicelist data = null;
-        if (!ob.getServicesno().equals("")) {
-            data = getMyBookingData(ob.getServicesno());
+        if (ob.getSno() != 0) {
+            data = getMyBookingData(ob.getSno());
             if (data == null) {
                 done = insertMyBookingData(ob);
             } else {
@@ -260,8 +260,8 @@ public class DbHelper extends SQLiteOpenHelper {
         return i > 0;
     }
 
-    public Bookservicelist getMyBookingData(String id) {
-        String query = "Select * FROM MyBookingData WHERE sno= '" + id + "'";
+    public Bookservicelist getMyBookingData(int id) {
+        String query = "Select * FROM MyBookingData WHERE sno= " + id + "";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Bookservicelist data = new Bookservicelist();
@@ -304,7 +304,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         long i = 0;
-        i = db.update("MyBookingData", values, "sno= '" + ob.getSno() + "'", null);
+        i = db.update("MyBookingData", values, "sno= " + ob.getSno() + "", null);
 
         db.close();
         return i > 0;
@@ -349,6 +349,14 @@ public class DbHelper extends SQLiteOpenHelper {
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("MyBookingData", null, null);
+        db.close();
+        return result;
+    }
+
+    public boolean deleteMyBookingDataWithSno(int sno) {
+        boolean result = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("MyBookingData", "sno = " + sno + " ", null);
         db.close();
         return result;
     }

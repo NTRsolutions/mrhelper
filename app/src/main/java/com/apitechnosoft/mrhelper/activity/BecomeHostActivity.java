@@ -78,6 +78,7 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
     boolean selectImageFlag = false;
     String idProofImage, profileImage;
     ImageView idproofImageview, profileImageview;
+    String sno="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,7 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
                 Servicelist service = (Servicelist) adapterView.getItemAtPosition(pos);
                 if (service != null) {
                     serviceName = service.getService();
+                    sno=service.getSno();
                     //Toast.makeText(adapterView.getContext(), "The service is " + adapterView.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
                 }
             }
@@ -210,7 +212,7 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
                 JSONObject IDPROOFobj = new JSONObject();
                 JSONObject PROFILEobj = new JSONObject();
 
-                PATNERobj.put("service", serviceName);
+                PATNERobj.put("service", Integer.parseInt(sno));
                 PATNERobj.put("fullName", fullNamestr);
                 PATNERobj.put("mobileNo", phoneNostr);
                 PATNERobj.put("emailId", emailIdstr);
@@ -246,13 +248,13 @@ public class BecomeHostActivity extends AppCompatActivity implements View.OnClic
                         ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
                         if (data != null) {
                             if (data.isStatus()) {
-                                Utility.setUserPhoneNo(BecomeHostActivity.this,phoneNostr);
-                                Toast.makeText(BecomeHostActivity.this, "Data save done.", Toast.LENGTH_LONG).show();
+                               // Utility.setUserPhoneNo(BecomeHostActivity.this,phoneNostr);
+                                Toast.makeText(BecomeHostActivity.this, "You have been successfully register as Become a host.", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(BecomeHostActivity.this, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(BecomeHostActivity.this, "Data not save!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(BecomeHostActivity.this, "You have been not register successfully as Become a host!", Toast.LENGTH_LONG).show();
                             }
                         }
                     } else {

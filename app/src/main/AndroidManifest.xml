@@ -117,8 +117,11 @@
             android:name=".activity.AboutUsActivity"
             android:label="About Mrhelper" />
         <activity android:name=".activity.PaymentConfirmActivity" />
-        <activity android:name=".activity.MyBookingActivity"
-            android:label="My Booking"></activity>
+        <activity
+            android:name=".activity.MyBookingActivity"
+            android:label="My Booking" />
+        <activity android:name=".activity.IOTActivity"
+            android:label="Connect to IOT Device"></activity>
     </application>
 
 </manifest>

@@ -179,6 +179,17 @@ public class ContentData {
     {
         this.user = user;
     }
+
+    private AllloactionData[] allloactionData;
+    public AllloactionData[] getAllloactionData ()
+    {
+        return allloactionData;
+    }
+
+    public void setAllloactionData (AllloactionData[] allloactionData)
+    {
+        this.allloactionData = allloactionData;
+    }
     @Override
     public String toString()
     {

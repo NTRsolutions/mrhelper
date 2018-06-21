@@ -67,7 +67,7 @@
                             android:layout_weight="0.8"
                             android:maxLines="1"
                             android:paddingLeft="@dimen/dimValue_5"
-                            android:text="Noida"
+                            android:text="Select Location"
                             android:textColor="@color/white"
                             android:textSize="@dimen/dimTextSize_12" />
 

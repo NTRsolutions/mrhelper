@@ -61,6 +61,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     NestedScrollView allserviceLayout;
     TextView yoursercive, locationName;
     boolean locationFlage = false;
+    String cityName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +209,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if (locationFlage) {
                     Intent intent1 = new Intent(HomeActivity.this, SearchForServiceActivity.class);
                     intent1.putExtra("Service", searchdatastr);
+                    intent1.putExtra("cityName", cityName);
                     startActivity(intent1);
                 } else {
                     Toast.makeText(HomeActivity.this, "First select location!", Toast.LENGTH_LONG).show();
@@ -365,6 +367,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         final ListView listView = (ListView) dialog.findViewById(R.id.state_list);
         listView.setAdapter(null);
+
         adapter = new LocationListAdapter(HomeActivity.this, Locationlist);
         listView.setAdapter(adapter);
 
@@ -374,6 +377,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                                     long arg3) {
                 yoursercive.setText("Your Service Expert in " + Locationlist.get(pos).getPinCode());
                 locationFlage = true;
+                cityName = Locationlist.get(pos).getPinCode();
                 locationName.setText(Locationlist.get(pos).getPinCode());
                 dialog.dismiss();
             }
@@ -457,8 +461,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                             ContentData data = new Gson().fromJson(result, ContentData.class);
                             if (data != null) {
                                 if (data.getUser() != null) {
-                                    DbHelper dbHelper = new DbHelper(HomeActivity.this);
-                                    dbHelper.upsertUserData(data.getUser());
+                                    if (data.getUser().getMobileno() != null && !data.getUser().getMobileno().equals("")) {
+                                        DbHelper dbHelper = new DbHelper(HomeActivity.this);
+                                        dbHelper.upsertUserData(data.getUser());
+                                    }
                                 }
                             }
                         }

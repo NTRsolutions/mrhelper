@@ -51,7 +51,7 @@ public class OnGoingBookingFragment extends Fragment {
         DbHelper dbHelper = new DbHelper(context);
         List<Bookservicelist> bookservicelists= dbHelper.getAllMyBookingData();
         if(bookservicelists!=null) {
-            OnGoingBookingAdapter mAdapter = new OnGoingBookingAdapter(context, bookservicelists);
+            OnGoingBookingAdapter mAdapter = new OnGoingBookingAdapter(context, bookservicelists,true);
             recyclerView.setAdapter(mAdapter);
         }
     }

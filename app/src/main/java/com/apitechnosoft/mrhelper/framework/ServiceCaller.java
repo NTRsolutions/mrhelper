@@ -273,4 +273,51 @@ public class ServiceCaller {
             }
         });
     }
+
+
+    //call cancel service
+    public void callCancelRquestSrvice(int sno, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.CancelRequestApi + sno;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("cancelrequestService done", false);
+                }
+            }
+        });
+    }
+
+    public void IOTDataService(String url, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("OtpService done", false);
+                }
+            }
+        });
+    }
+
+    //call search service
+    public void callSearchSrvice(String cityName, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.GetshowLoctionService +cityName;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("callSearchSrvice done", false);
+                }
+            }
+        });
+    }
 }

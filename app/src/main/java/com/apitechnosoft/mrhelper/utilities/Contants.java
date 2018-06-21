@@ -50,5 +50,8 @@ public class Contants {
     public static final String UserInfoService = "UserInfoService/getuserInfoService?mobile=";
     public static final String UserRegistrationServices = "UserRegistrationServices/doRegister?";
     public static final String BookServicesCaller = "BookServicesCaller/getbookservices?mobileno=";
+    public static final String CancelRequestApi = "CancelRequestApi/docancelRequest?sno=";
+    public static final String GetshowLoctionService = "ShowLoctionServiceApi/getshowLoctionService?loc=";
+
 
 }
