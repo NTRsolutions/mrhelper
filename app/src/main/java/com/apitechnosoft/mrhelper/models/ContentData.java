@@ -190,6 +190,16 @@ public class ContentData {
     {
         this.allloactionData = allloactionData;
     }
+    private String otp;
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
     @Override
     public String toString()
     {

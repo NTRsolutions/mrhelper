@@ -26,10 +26,13 @@ import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
 import com.apitechnosoft.mrhelper.framework.ServiceCaller;
+import com.apitechnosoft.mrhelper.models.ContentData;
+import com.apitechnosoft.mrhelper.models.ContentServicelist;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
 import com.apitechnosoft.mrhelper.utilities.Contants;
 import com.apitechnosoft.mrhelper.utilities.FontManager;
 import com.apitechnosoft.mrhelper.utilities.Utility;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,7 +48,8 @@ public class AddressActivity extends AppCompatActivity {
     float totalAmount;
     String selectedValueSno;
     int NavigationFlag;
-    int sNo,NoOfService;
+    int sNo, NoOfService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,16 +74,16 @@ public class AddressActivity extends AppCompatActivity {
         //come from repair screen
         if (NavigationFlag == 2) {
             ServiceName = getIntent().getStringExtra("ServiceName");
-            totalAmount = getIntent().getFloatExtra("totalAmount",0);
-            sNo = getIntent().getIntExtra("Sno",0);
+            totalAmount = getIntent().getFloatExtra("totalAmount", 0);
+            sNo = getIntent().getIntExtra("Sno", 0);
             selectedValueSno = getIntent().getStringExtra("selectedValue");
-            NoOfService = getIntent().getIntExtra("NoOfService",0);
+            NoOfService = getIntent().getIntExtra("NoOfService", 0);
         }
         //come from party screen
         if (NavigationFlag == 1) {
             SharedPreferences prefs = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE);
             ServiceName = prefs.getString("heading", "");
-            sNo = getIntent().getIntExtra("Sno",0);
+            sNo = getIntent().getIntExtra("Sno", 0);
         }
         TextView wheredo = (TextView) toolbar.findViewById(R.id.wheredo);
         wheredo.setText("Best " + ServiceName + " in This Area");
@@ -244,15 +248,21 @@ public class AddressActivity extends AppCompatActivity {
             serviceCaller.callOtpService(mobileNostr, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    // if (isComplete) {
-                    Intent intent = new Intent(AddressActivity.this, OTPActivity.class);
-                    intent.putExtra("ServiceName", ServiceName);
-                    intent.putExtra("Phone", mobileNostr);
-                    intent.putExtra("NavigationFlag", NavigationFlag);
-                    startActivity(intent);
-                   /* } else {
+                    ContentData data = new Gson().fromJson(result, ContentData.class);
+                    if (data != null) {
+                        if (data.getOtp() != null) {
+                            Intent intent = new Intent(AddressActivity.this, OTPActivity.class);
+                            intent.putExtra("ServiceName", ServiceName);
+                            intent.putExtra("Phone", mobileNostr);
+                            intent.putExtra("NavigationFlag", NavigationFlag);
+                            intent.putExtra("OTP", data.getOtp());
+                            startActivity(intent);
+                        } else {
+                            Utility.alertForErrorMessage(Contants.Error, AddressActivity.this);
+                        }
+                    } else {
                         Utility.alertForErrorMessage(Contants.Error, AddressActivity.this);
-                    }*/
+                    }
                     if (dotDialog.isShowing()) {
                         dotDialog.dismiss();
                     }

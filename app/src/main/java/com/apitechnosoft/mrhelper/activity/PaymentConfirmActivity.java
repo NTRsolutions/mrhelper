@@ -11,15 +11,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
 import com.apitechnosoft.mrhelper.framework.ServiceCaller;
+import com.apitechnosoft.mrhelper.models.ContentResponce;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
 import com.apitechnosoft.mrhelper.utilities.Contants;
 import com.apitechnosoft.mrhelper.utilities.FontManager;
 import com.apitechnosoft.mrhelper.utilities.Utility;
+import com.google.gson.Gson;
 
 public class PaymentConfirmActivity extends AppCompatActivity implements View.OnClickListener {
     private Typeface materialdesignicons_font;
@@ -28,6 +31,8 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
     private String dataUrl;
     TextView totalservice, serviceamount, amountservicetax;
     String usermobileNo;
+    String paymentMode = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,9 +87,11 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.onlineLayout:
+                paymentMode = "Online";
                 COD();
                 break;
             case R.id.codLayout:
+                paymentMode = "COD";
                 COD();
                 break;
         }
@@ -105,7 +112,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         String landMarkStr = prefs.getString("landMarkStr", "");
         String nameStr = prefs.getString("nameStr", "");
         String mobileNostr = prefs.getString("mobileNostr", "");
-        usermobileNo=mobileNostr;
+        usermobileNo = mobileNostr;
         String passwordstr = prefs.getString("passwordstr", "");
         String emailaddressStr = prefs.getString("emailaddressStr", "");
         String timeViewStr = prefs.getString("timeViewStr", "");
@@ -136,7 +143,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         String landMarkStr = prefs.getString("landMarkStr", "");
         String nameStr = prefs.getString("nameStr", "");
         String mobileNostr = prefs.getString("mobileNostr", "");
-        usermobileNo=mobileNostr;
+        usermobileNo = mobileNostr;
         String passwordstr = prefs.getString("passwordstr", "");
         String emailaddressStr = prefs.getString("emailaddressStr", "");
         // String timeViewStr = prefs.getString("timeViewStr", "");
@@ -160,22 +167,28 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
             final CircleDotDialog dotDialog = new CircleDotDialog(PaymentConfirmActivity.this);
             dotDialog.show();
             ServiceCaller serviceCaller = new ServiceCaller(this);
-            serviceCaller.callSaveService(dataUrl, new IAsyncWorkCompletedCallback() {
+            String url = dataUrl + "+&paymentmode=" + paymentMode + "";
+            serviceCaller.callSaveService(url, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    Utility.setUserPhoneNo(PaymentConfirmActivity.this,usermobileNo);
-                    Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
+                    if (data != null) {
+                        if (data.isStatus()) {
+                            Toast.makeText(PaymentConfirmActivity.this, "Your order has been placed successfully.", Toast.LENGTH_LONG).show();
+                            Utility.setUserPhoneNo(PaymentConfirmActivity.this, usermobileNo);
+                            Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
 
-                    SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
-                    editor.clear();
-                    editor.commit();
-                   /* if (isComplete) {
-
+                            SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
+                            editor.clear();
+                            editor.commit();
+                        } else {
+                            Utility.alertForErrorMessage("Your order has not been placed successfully!", PaymentConfirmActivity.this);
+                        }
                     } else {
-                        Utility.alertForErrorMessage(Contants.Error, OTPActivity.this);
-                    }*/
+                        Utility.alertForErrorMessage(Contants.Error, PaymentConfirmActivity.this);
+                    }
                     if (dotDialog.isShowing()) {
                         dotDialog.dismiss();
                     }
@@ -192,27 +205,33 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
             final CircleDotDialog dotDialog = new CircleDotDialog(PaymentConfirmActivity.this);
             dotDialog.show();
             ServiceCaller serviceCaller = new ServiceCaller(this);
-            serviceCaller.callPartySaveService(dataUrl, new IAsyncWorkCompletedCallback() {
+            String url = dataUrl + "+&paymentmode=" + paymentMode + "";
+            serviceCaller.callPartySaveService(url, new IAsyncWorkCompletedCallback() {
                 @Override
                 public void onDone(String result, boolean isComplete) {
-                    Utility.setUserPhoneNo(PaymentConfirmActivity.this,usermobileNo);
+                    ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
+                    if (data != null) {
+                        if (data.isStatus()) {
+                            Toast.makeText(PaymentConfirmActivity.this, "Your order has been placed successfully.", Toast.LENGTH_LONG).show();
+                            Utility.setUserPhoneNo(PaymentConfirmActivity.this, usermobileNo);
 
-                    Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                            Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
 
-                    SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
-                    editor.clear();
-                    editor.commit();
+                            SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
+                            editor.clear();
+                            editor.commit();
 
-                    SharedPreferences.Editor Partyeditor = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE).edit();
-                    Partyeditor.clear();
-                    Partyeditor.commit();
-                   /* if (isComplete) {
-
+                            SharedPreferences.Editor Partyeditor = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE).edit();
+                            Partyeditor.clear();
+                            Partyeditor.commit();
+                        } else {
+                            Utility.alertForErrorMessage("Your order has not been placed successfully!", PaymentConfirmActivity.this);
+                        }
                     } else {
-                        Utility.alertForErrorMessage(Contants.Error, OTPActivity.this);
-                    }*/
+                        Utility.alertForErrorMessage(Contants.Error, PaymentConfirmActivity.this);
+                    }
                     if (dotDialog.isShowing()) {
                         dotDialog.dismiss();
                     }

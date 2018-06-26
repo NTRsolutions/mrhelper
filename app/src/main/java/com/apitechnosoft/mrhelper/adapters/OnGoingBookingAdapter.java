@@ -104,7 +104,7 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
                 new android.support.v7.app.AlertDialog.Builder(mContext, R.style.AlertDialogTheme);
         final android.support.v7.app.AlertDialog dialog = builder.create();
         //dialog.getWindow().getAttributes().windowAnimations = R.style.alertAnimation;
-        dialog.setMessage("Are you sure you want to delete your service!");
+        dialog.setMessage("Are you sure you want to cancel your service!");
         dialog.setTitle("Request Delete Alert");
         dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
             @Override

@@ -19,6 +19,7 @@ import com.apitechnosoft.mrhelper.adapters.RepairServiceAdapter;
 import com.apitechnosoft.mrhelper.database.DbHelper;
 import com.apitechnosoft.mrhelper.models.Bookservicelist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -51,7 +52,13 @@ public class OnGoingBookingFragment extends Fragment {
         DbHelper dbHelper = new DbHelper(context);
         List<Bookservicelist> bookservicelists= dbHelper.getAllMyBookingData();
         if(bookservicelists!=null) {
-            OnGoingBookingAdapter mAdapter = new OnGoingBookingAdapter(context, bookservicelists,true);
+            List<Bookservicelist> serviceList=new ArrayList<Bookservicelist>();
+                    for(Bookservicelist data: bookservicelists){
+                        if(data.getBookingStatus().equalsIgnoreCase("pending")){
+                            serviceList.add(data);
+                        }
+                    }
+            OnGoingBookingAdapter mAdapter = new OnGoingBookingAdapter(context, serviceList,true);
             recyclerView.setAdapter(mAdapter);
         }
     }

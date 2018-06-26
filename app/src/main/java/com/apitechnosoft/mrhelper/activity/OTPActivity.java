@@ -30,6 +30,7 @@ public class OTPActivity extends AppCompatActivity {
     String otpViewStr;
     int NavigationFlag;
     String ServiceName;
+    String OTP = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +55,11 @@ public class OTPActivity extends AppCompatActivity {
         NavigationFlag = getIntent().getIntExtra("NavigationFlag", 0);
 
         ServiceName = getIntent().getStringExtra("ServiceName");
+        OTP = getIntent().getStringExtra("OTP");
         final String Phone = getIntent().getStringExtra("Phone");
         //come from repair screen
         if (NavigationFlag == 2) {
-           // getData();
+            // getData();
         }
         //come from party screen
         if (NavigationFlag == 1) {
@@ -150,7 +152,10 @@ public class OTPActivity extends AppCompatActivity {
         otpViewStr = otpView.getText().toString();
 
         if (otpViewStr.length() == 0) {
-            Toast.makeText(this, "Please Enter OTP No", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please Enter OTP", Toast.LENGTH_LONG).show();
+            return false;
+        }else if(!OTP.equals(otpViewStr)){
+            Toast.makeText(this, "Please Enter correct OTP!", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

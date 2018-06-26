@@ -171,6 +171,16 @@ public class Bookservicelist {
         this.mobile = mobile;
     }
 
+    private String bookingStatus;
+
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
     @Override
     public String toString() {
         return "ClassPojo [totalservice = " + totalservice + ", serviceamount = " + serviceamount + ", servicesno = " + servicesno + ", sno = " + sno + ", timepicker = " + timepicker + ", jobId = " + jobId + ", houseno = " + houseno + ", aftertaxamount = " + aftertaxamount + ", loc = " + loc + ", txtdate1 = " + txtdate1 + ", serviceName = " + serviceName + ", landmark = " + landmark + ", email = " + email + ", name = " + name + ", entrydate = " + entrydate + ", providerResponse = " + providerResponse + ", mobile = " + mobile + "]";

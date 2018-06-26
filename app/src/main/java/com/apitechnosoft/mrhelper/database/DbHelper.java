@@ -47,7 +47,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_user_TABLE);
 
 
-        String CREATE_MyBooking_TABLE = "CREATE TABLE MyBookingData(servicesno TEXT,totalservice TEXT,name TEXT,mobile TEXT,serviceamount TEXT,aftertaxamount TEXT,email TEXT,timepicker TEXT,txtdate1 TEXT,houseno TEXT,loc TEXT,jobId INTEGER,landmark TEXT,sno INTEGER,entrydate TEXT,serviceName TEXT,providerResponse TEXT)";
+        String CREATE_MyBooking_TABLE = "CREATE TABLE MyBookingData(servicesno TEXT,totalservice TEXT,name TEXT,mobile TEXT,serviceamount TEXT,aftertaxamount TEXT,email TEXT,timepicker TEXT,txtdate1 TEXT,houseno TEXT,loc TEXT,jobId INTEGER,landmark TEXT,sno INTEGER,entrydate TEXT,serviceName TEXT,providerResponse TEXT, bookingStatus TEXT)";
         db.execSQL(CREATE_MyBooking_TABLE);
     }
 
@@ -226,6 +226,7 @@ public class DbHelper extends SQLiteOpenHelper {
         ob.setEntrydate(cursor.getString(14));
         ob.setServiceName(cursor.getString(15));
         ob.setProviderResponse(cursor.getString(16));
+        ob.setBookingStatus(cursor.getString(17));
     }
 
 
@@ -295,6 +296,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("entrydate", ob.getEntrydate());
         values.put("serviceName", ob.getServiceName());
         values.put("providerResponse", ob.getProviderResponse());
+        values.put("bookingStatus", ob.getBookingStatus());
     }
 
     //update MyBooking data
