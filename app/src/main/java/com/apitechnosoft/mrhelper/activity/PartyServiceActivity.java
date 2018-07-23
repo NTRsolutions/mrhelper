@@ -351,6 +351,8 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                     } else {
                         openAddressScreen();
                     }
+                } else {
+                    openAddressScreen();
                 }
 
                 alert.dismiss();

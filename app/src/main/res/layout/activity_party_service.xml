@@ -100,7 +100,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity=""
-                            android:hint="Small Kitchen"
+                            android:hint=""
                             android:paddingLeft="5dp"
                             android:textSize="@dimen/dimTextSize_14" />
 
@@ -130,7 +130,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity=""
-                            android:hint="Small Kitchen"
+                            android:hint=""
                             android:paddingLeft="5dp"
                             android:textSize="@dimen/dimTextSize_14" />
 
@@ -160,7 +160,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity=""
-                            android:hint="Small Kitchen"
+                            android:hint=""
                             android:paddingLeft="5dp"
                             android:textSize="@dimen/dimTextSize_14" />
 
@@ -190,7 +190,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity=""
-                            android:hint="Small Kitchen"
+                            android:hint=""
                             android:paddingLeft="5dp"
                             android:textSize="@dimen/dimTextSize_14" />
 
@@ -220,7 +220,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity=""
-                            android:hint="Small Kitchen"
+                            android:hint=""
                             android:paddingLeft="5dp"
                             android:textSize="@dimen/dimTextSize_14" />
 

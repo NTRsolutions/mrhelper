@@ -127,13 +127,13 @@ public class RepairServiceActivity extends AppCompatActivity {
         if (data != null) {
             DetailListDashboarddata[] detailList = data.getDetailListDashboarddata();
             ArrayList<DetailListDashboarddata> detaiArraylList = new ArrayList<DetailListDashboarddata>(Arrays.asList(detailList));
-           final String detaiArraylListStr= new Gson().toJson(detaiArraylList);
+            final String detaiArraylListStr = new Gson().toJson(detaiArraylList);
 
-             MenuheadingtData[] menuList = data.getMenuheadingtData();
+            MenuheadingtData[] menuList = data.getMenuheadingtData();
             if (menuList != null && menuList.length > 0) {
-                final List<RepairItemsListParentModel> newMenuParentList=new ArrayList<RepairItemsListParentModel>();
-                for(MenuheadingtData menuData:menuList){
-                    RepairItemsListParentModel parentModel=new RepairItemsListParentModel();
+                final List<RepairItemsListParentModel> newMenuParentList = new ArrayList<RepairItemsListParentModel>();
+                for (MenuheadingtData menuData : menuList) {
+                    RepairItemsListParentModel parentModel = new RepairItemsListParentModel();
                     parentModel.setSno(menuData.getSno());
                     parentModel.setServiceName(menuData.getServiceName());
                     parentModel.setRate1(menuData.getRate1());
@@ -164,11 +164,13 @@ public class RepairServiceActivity extends AppCompatActivity {
                 expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                     @Override
                     public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                        Intent intent = new Intent(RepairServiceActivity.this, RepairServiceAddToCardActivity.class);
-                        intent.putExtra("ServiceName", newMenuParentList.get(groupPosition).getServiceName());
-                        intent.putExtra("MenuDetail", detaiArraylListStr);
-                        intent.putExtra("Sno", sNumber);
-                        startActivity(intent);
+                        if (newMenuParentList.get(groupPosition).getSubmenuList() == null || newMenuParentList.get(groupPosition).getSubmenuList().size() == 0) {
+                            Intent intent = new Intent(RepairServiceActivity.this, RepairServiceAddToCardActivity.class);
+                            intent.putExtra("ServiceName", newMenuParentList.get(groupPosition).getServiceName());
+                            intent.putExtra("MenuDetail", detaiArraylListStr);
+                            intent.putExtra("Sno", sNumber);
+                            startActivity(intent);
+                        }
                         return false;
                     }
                 });

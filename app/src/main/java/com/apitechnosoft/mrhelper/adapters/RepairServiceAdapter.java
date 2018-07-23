@@ -3,6 +3,7 @@ package com.apitechnosoft.mrhelper.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -67,8 +68,9 @@ public class RepairServiceAdapter extends RecyclerView.Adapter<RepairServiceAdap
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.subHeading.setText(locationList.get(position).getSubHeading());
-        holder.oldPrice.setText("Rs." + locationList.get(position).getRate1());
-        holder.newPrice.setText("Rs." + locationList.get(position).getRate2());
+        holder.oldPrice.setText("Rs." + locationList.get(position).getRate2());
+        holder.newPrice.setText("Rs." + locationList.get(position).getRate1());
+        holder.oldPrice.setPaintFlags(  holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.option2.setText(locationList.get(position).getOption2());
         holder.option1.setText(locationList.get(position).getOption());
         holder.free.setText(locationList.get(position).getFree());
@@ -97,7 +99,7 @@ public class RepairServiceAdapter extends RecyclerView.Adapter<RepairServiceAdap
 
                 Intent intent = new Intent("AddItem");
                 intent.putExtra("ItemSon", locationList.get(position).getSno());
-                intent.putExtra("Price", locationList.get(position).getRate2());
+                intent.putExtra("Price", locationList.get(position).getRate1());
                 intent.putExtra("AddRemove", flage);
                 mContext.sendBroadcast(intent);
 
