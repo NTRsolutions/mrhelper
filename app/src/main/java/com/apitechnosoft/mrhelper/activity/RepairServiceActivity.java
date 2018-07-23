@@ -161,9 +161,21 @@ public class RepairServiceActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+                expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                    @Override
+                    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                        Intent intent = new Intent(RepairServiceActivity.this, RepairServiceAddToCardActivity.class);
+                        intent.putExtra("ServiceName", newMenuParentList.get(groupPosition).getServiceName());
+                        intent.putExtra("MenuDetail", detaiArraylListStr);
+                        intent.putExtra("Sno", sNumber);
+                        startActivity(intent);
+                        return false;
+                    }
+                });
             }
 
         }
+
     }
 
 }

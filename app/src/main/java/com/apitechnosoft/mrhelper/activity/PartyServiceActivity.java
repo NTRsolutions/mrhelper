@@ -235,7 +235,7 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
 
 
     private void parsePartyData(String result) {
-         data = new Gson().fromJson(result, PartyServiceContentData.class);
+        data = new Gson().fromJson(result, PartyServiceContentData.class);
         if (data != null) {
             partyMServicesdata = data.getPartyMServicesdata();
             partyMServicesdataOne = data.getPartyMServicesdataOne();
@@ -284,7 +284,8 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
-    public  void alertForErrorMessage() {
+
+    public void alertForErrorMessage() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(PartyServiceActivity.this);
         Typeface roboto_regular = Typeface.createFromAsset(getAssets(), "fonts/roboto.regular.ttf");
         final AlertDialog alert = builder.create();
@@ -315,6 +316,8 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                         intent.putExtra("contentData", contentData);
                         intent.putExtra("heading", heading);
                         startActivity(intent);
+                    } else {
+                        openAddressScreen();
                     }
                 } else if (isSecond) {
                     if (!partyMServicesdataTow.getSno().equals("0") && partyMServicesdataTow.getOption() != null && !partyMServicesdataTow.getOption().equals("")) {
@@ -323,6 +326,8 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                         intent.putExtra("contentData", contentData);
                         intent.putExtra("heading", heading);
                         startActivity(intent);
+                    } else {
+                        openAddressScreen();
                     }
                 } else if (isThree) {
                     if (!partyMServicesdataThree.getSno().equals("0") && partyMServicesdataThree.getOption() != null && !partyMServicesdataThree.getOption().equals("")) {
@@ -332,6 +337,8 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                         intent.putExtra("contentData", contentData);
                         intent.putExtra("heading", heading);
                         startActivity(intent);
+                    } else {
+                        openAddressScreen();
                     }
                 } else if (isFour) {
                     if (!partyMServicesdataFour.getSno().equals("0") && partyMServicesdataFour.getOption() != null && !partyMServicesdataFour.getOption().equals("")) {
@@ -341,6 +348,8 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
                         intent.putExtra("contentData", contentData);
                         intent.putExtra("heading", heading);
                         startActivity(intent);
+                    } else {
+                        openAddressScreen();
                     }
                 }
 
@@ -354,6 +363,13 @@ public class PartyServiceActivity extends AppCompatActivity implements View.OnCl
             }
         });
         alert.show();
+    }
+
+    //open address screen dirct when no step found
+    private void openAddressScreen() {
+        Intent intent = new Intent(PartyServiceActivity.this, AddressActivity.class);
+        intent.putExtra("NavigationFlag", 1);
+        startActivity(intent);
     }
    /* public void alertNative() {
         android.support.v7.app.AlertDialog.Builder builder =

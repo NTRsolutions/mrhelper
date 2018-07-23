@@ -185,7 +185,12 @@ public class AddressActivity extends AppCompatActivity {
         } else if (mobileNostr.length() == 0) {
             Toast.makeText(this, "Please Enter Mobile No", Toast.LENGTH_LONG).show();
             return false;
-        } else if (passwordstr.length() == 0) {
+        }  else if (mobileNostr.length() != 10) {
+            Toast.makeText(this, "Please Enter valid Mobile No", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        else if (passwordstr.length() == 0) {
             Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
             return false;
         } else if (emailaddressStr.length() == 0) {
