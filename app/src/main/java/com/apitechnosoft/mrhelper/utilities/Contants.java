@@ -52,6 +52,9 @@ public class Contants {
     public static final String BookServicesCaller = "BookServicesCaller/getbookservices?mobileno=";
     public static final String CancelRequestApi = "CancelRequestApi/docancelRequest?sno=";
     public static final String GetshowLoctionService = "ShowLoctionServiceApi/getshowLoctionService?loc=";
+    public static final String HostLogin = "loginenginee/dologinenginee?";
+    public static final String GetProfessionalInfo = "PartnerDetailsForPartnerEdit/getpartnerdetailsForpartner?";
+    public static final String OrderBookedListEngineerWise = "OrderBookedListEngineerWise/getorderbookedlistengineerwise?";
 
 
 }

@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,9 +34,9 @@ import com.apitechnosoft.mrhelper.framework.ServiceCaller;
 import com.apitechnosoft.mrhelper.models.Bookservicelist;
 import com.apitechnosoft.mrhelper.models.ContentData;
 import com.apitechnosoft.mrhelper.models.ContentMybooking;
-import com.apitechnosoft.mrhelper.models.ContentResponce;
 import com.apitechnosoft.mrhelper.models.Locationreportdata;
 import com.apitechnosoft.mrhelper.models.Searchreportdata;
+import com.apitechnosoft.mrhelper.professional.BecomeHostLoginActivity;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
 import com.apitechnosoft.mrhelper.utilities.Contants;
 import com.apitechnosoft.mrhelper.utilities.FontManager;
@@ -228,7 +227,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 openScreen(ProfileActivity.class);
                 break;
             case R.id.becomeHost:
-                openScreen(BecomeHostActivity.class);
+                openScreen(BecomeHostLoginActivity.class);
                 break;
 
         }

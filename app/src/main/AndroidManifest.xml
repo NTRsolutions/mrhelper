@@ -120,8 +120,12 @@
         <activity
             android:name=".activity.MyBookingActivity"
             android:label="My Booking" />
-        <activity android:name=".activity.IOTActivity"
-            android:label="Connect to IOT Device"></activity>
+        <activity
+            android:name=".activity.IOTActivity"
+            android:label="Connect to IOT Device" />
+        <activity android:name=".professional.BecomeHostLoginActivity" />
+        <activity android:name=".professional.ProfessionalWorkSheetActivity"
+            android:label="Professional Work Sheet"></activity>
     </application>
 
 </manifest>

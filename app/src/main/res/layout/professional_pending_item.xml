@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimValue_5"
+    android:background="@color/white"
+    android:elevation="8dp"
+    app:cardCornerRadius="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/repairservicelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimValue_10"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/jobId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job ID"
+                android:textSize="@dimen/dimTextSize_18"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sewrvicename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Generic Software Issues"
+                    android:textSize="@dimen/dimTextSize_16"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Service Amount"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:id="@+id/serviceamount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textSize="@dimen/dimTextSize_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Total Amount"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:id="@+id/totalamount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textSize="@dimen/dimTextSize_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Booking Date"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:id="@+id/bookingdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="May 4 ,2018"
+                    android:textSize="@dimen/dimTextSize_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Service Date"
+                    android:textSize="@dimen/dimTextSize_16" />
+
+                <TextView
+                    android:id="@+id/servicedate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="May 4 ,2018"
+                    android:textSize="@dimen/dimTextSize_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimValue_1"
+                android:layout_marginBottom="@dimen/dimValue_10"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Customer Details"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/dimTextSize_16"
+                    />
+                <TextView
+                    android:id="@+id/customerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Name :"
+                    android:layout_marginTop="@dimen/dimValue_5"
+                    android:textSize="@dimen/dimTextSize_16"
+                    />
+                <TextView
+                    android:id="@+id/customerphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Phone :"
+                    android:layout_marginTop="@dimen/dimValue_5"
+                    android:textSize="@dimen/dimTextSize_16"
+                    />
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Email :"
+                    android:layout_marginTop="@dimen/dimValue_5"
+                    android:textSize="@dimen/dimTextSize_16"
+                    />
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimValue_5"
+                    android:text="Address :"
+                    android:textSize="@dimen/dimTextSize_16" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/complete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_36px"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Complete Job"
+            android:textColor="#fff"
+            android:textSize="@dimen/dimTextSize_16" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

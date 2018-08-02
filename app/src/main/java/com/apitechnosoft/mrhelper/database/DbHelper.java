@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.apitechnosoft.mrhelper.models.Bookservicelist;
+import com.apitechnosoft.mrhelper.models.PartnerDetailsForPartner;
 import com.apitechnosoft.mrhelper.models.User;
 import com.apitechnosoft.mrhelper.utilities.Contants;
 
@@ -33,6 +34,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS userData");
         db.execSQL("DROP TABLE IF EXISTS MyBookingData");
+        db.execSQL("DROP TABLE IF EXISTS ProfessionalUserData");
 
         onCreate(db);
 
@@ -47,11 +49,12 @@ public class DbHelper extends SQLiteOpenHelper {
         String CREATE_user_TABLE = "CREATE TABLE userData(PhoneNumber TEXT,emailid TEXT,houseno TEXT,loc TEXT,landmark TEXT,email TEXT,name TEXT,password TEXT)";
         db.execSQL(CREATE_user_TABLE);
 
-
         String CREATE_MyBooking_TABLE = "CREATE TABLE MyBookingData(servicesno TEXT,totalservice TEXT,name TEXT,mobile TEXT,serviceamount TEXT,aftertaxamount TEXT,email TEXT,timepicker TEXT,txtdate1 TEXT,houseno TEXT,loc TEXT,jobId INTEGER,landmark TEXT,sno INTEGER,entrydate TEXT,serviceName TEXT,providerResponse TEXT, bookingStatus TEXT)";
         db.execSQL(CREATE_MyBooking_TABLE);
-    }
 
+        String CREATE_ProfessionalUser_TABLE = "CREATE TABLE ProfessionalUserData(fileName TEXT,fullName TEXT,mobileNo TEXT,city TEXT,designation TEXT,service TEXT,basicdetail TEXT,address TEXT,emailId TEXT,sno TEXT,status TEXT,serviceName TEXT,pricerange TEXT)";
+        db.execSQL(CREATE_ProfessionalUser_TABLE);
+    }
 
     public boolean upsertUserData(User user) {
         boolean done = false;
@@ -364,4 +367,72 @@ public class DbHelper extends SQLiteOpenHelper {
         return result;
     }
 
+
+    //insert Store data
+    public boolean insertProfessionalUserData(PartnerDetailsForPartner ob) {
+        ContentValues values = new ContentValues();
+        populateProfessionalUserValue(ob, values);
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long i = db.insert("ProfessionalUserData", null, values);
+        db.close();
+        return i > 0;
+    }
+
+    public PartnerDetailsForPartner getProfessionalUserData() {
+        String query = "Select * FROM ProfessionalUserData ";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        PartnerDetailsForPartner data = new PartnerDetailsForPartner();
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            populateProfessionalUserData(cursor, data);
+            cursor.close();
+        } else {
+            data = null;
+        }
+        db.close();
+        return data;
+    }
+
+    private void populateProfessionalUserData(Cursor cursor, PartnerDetailsForPartner ob) {
+        ob.setFileName(cursor.getString(0));
+        ob.setFullName(cursor.getString(1));
+        ob.setMobileNo(cursor.getString(2));
+        ob.setCity(cursor.getString(3));
+        ob.setDesignation(cursor.getString(4));
+        ob.setService(cursor.getString(5));
+        ob.setBasicdetail(cursor.getString(6));
+        ob.setAddress(cursor.getString(7));
+        ob.setEmailId(cursor.getString(8));
+        ob.setSno(cursor.getString(9));
+        ob.setStatus(cursor.getString(10));
+        ob.setServiceName(cursor.getString(11));
+        ob.setPricerange(cursor.getString(12));
+    }
+
+    private void populateProfessionalUserValue(PartnerDetailsForPartner ob, ContentValues values) {
+        values.put("fileName", ob.getFileName());
+        values.put("fullName", ob.getFullName());
+        values.put("mobileNo", ob.getMobileNo());
+        values.put("city", ob.getCity());
+        values.put("designation", ob.getDesignation());
+        values.put("service", ob.getService());
+        values.put("basicdetail", ob.getBasicdetail());
+        values.put("address", ob.getAddress());
+        values.put("emailId", ob.getEmailId());
+        values.put("sno", ob.getSno());
+        values.put("status", ob.getStatus());
+        values.put("serviceName", ob.getServiceName());
+        values.put("pricerange", ob.getPricerange());
+    }
+
+    public boolean deleteProfessionalData() {
+        boolean result = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("ProfessionalUserData", null, null);
+        db.close();
+        return result;
+    }
 }

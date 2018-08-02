@@ -18,12 +18,14 @@ import android.widget.TextView;
 
 
 import com.apitechnosoft.mrhelper.R;
+import com.apitechnosoft.mrhelper.database.DbHelper;
+import com.apitechnosoft.mrhelper.models.PartnerDetailsForPartner;
+import com.apitechnosoft.mrhelper.professional.ProfessionalWorkSheetActivity;
 import com.apitechnosoft.mrhelper.utilities.CompatibilityUtility;
 import com.apitechnosoft.mrhelper.utilities.Contants;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -61,31 +63,18 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                /*SharedPreferences prefs = getSharedPreferences("NoVerifyOrNotPreferences", Context.MODE_PRIVATE);
-                Boolean NoVerify = false;
-                if (prefs != null) {
-                    NoVerify = prefs.getBoolean("NoVerify", false);
-                }
-                if (NoVerify) {
-                    DbHelper dbhelper = new DbHelper(SplashScreenActivity.this);
-                    Data data = dbhelper.getUserData();
-                    if (data != null) {
-                        Intent intent = new Intent(SplashScreenActivity.this, DashboardActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    } else {
-                        Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
-                } else {
-                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+
+                DbHelper dbhelper = new DbHelper(SplashScreenActivity.this);
+                PartnerDetailsForPartner data = dbhelper.getProfessionalUserData();
+                if (data != null) {
+                    Intent intent = new Intent(SplashScreenActivity.this, ProfessionalWorkSheetActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                }*/
-                Intent intent = new Intent(SplashScreenActivity.this, HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                } else {
+                    Intent intent = new Intent(SplashScreenActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         }, 3000);
     }

@@ -320,4 +320,48 @@ public class ServiceCaller {
             }
         });
     }
+
+    //call host login service
+    public void callHostLoginSrvice(String username, String password, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.HostLogin + "phone=" + username + "&" + "password=" + password;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("hostloginService done", false);
+                }
+            }
+        });
+    }
+    public void callGetProfessionalInfoService(String username, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.GetProfessionalInfo + "mobile=" + username;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("GetProfessionalInfoService done", false);
+                }
+            }
+        });
+    }
+    public void callOrderBookedListService(String requestUrl, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.OrderBookedListEngineerWise + requestUrl;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("OrderBookedListService done", false);
+                }
+            }
+        });
+    }
 }
