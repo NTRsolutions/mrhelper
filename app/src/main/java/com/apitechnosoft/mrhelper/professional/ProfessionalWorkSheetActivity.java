@@ -20,6 +20,7 @@ public class ProfessionalWorkSheetActivity extends AppCompatActivity {
         chechPortaitAndLandSacpe();
         initView();
     }
+
     //chech Portait And LandSacpe Orientation
     public void chechPortaitAndLandSacpe() {
         if (CompatibilityUtility.isTablet(ProfessionalWorkSheetActivity.this)) {
