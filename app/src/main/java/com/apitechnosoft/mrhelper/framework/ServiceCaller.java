@@ -308,7 +308,7 @@ public class ServiceCaller {
     //call search service
     public void callSearchSrvice(String cityName, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
-        final String url = Contants.SERVICE_BASE_URL + Contants.GetshowLoctionService +cityName;
+        final String url = Contants.SERVICE_BASE_URL + Contants.GetshowLoctionService + cityName;
         new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
             @Override
             public void onDone(String doneWhatCode, String result, String error) {
@@ -336,6 +336,7 @@ public class ServiceCaller {
             }
         });
     }
+
     public void callGetProfessionalInfoService(String username, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
         final String url = Contants.SERVICE_BASE_URL + Contants.GetProfessionalInfo + "mobile=" + username;
@@ -350,6 +351,7 @@ public class ServiceCaller {
             }
         });
     }
+
     public void callOrderBookedListService(String requestUrl, final IAsyncWorkCompletedCallback workCompletedCallback) {
 
         final String url = Contants.SERVICE_BASE_URL + Contants.OrderBookedListEngineerWise + requestUrl;
@@ -360,6 +362,84 @@ public class ServiceCaller {
                     workCompletedCallback.onDone(result, true);
                 } else {
                     workCompletedCallback.onDone("OrderBookedListService done", false);
+                }
+            }
+        });
+    }
+
+    //call otp service
+    public void callOtpSrvice(String sno, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.GetOtp + sno;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("OtprequestService done", false);
+                }
+            }
+        });
+    }
+
+    //call update booking service
+    public void callUpdateBookingSrvice(String amount, String sno, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.UpdateBookingstatus + "sno=" + sno + "&" + "amount=" + amount;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("UpdateBookingService done", false);
+                }
+            }
+        });
+    }
+
+    //call feedback service
+    public void callFeedbackSrvice(int point, String phone, String jobId, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.Feedback + "star=" + point + "&" + "mobile=" + phone + "&" + "jobid=" + jobId;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("feedbackService done", false);
+                }
+            }
+        });
+    }
+
+    public void callCompletedService(String pNumber, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.CompleteJob + pNumber;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("CompletedService done", false);
+                }
+            }
+        });
+    }
+
+    public void callCanceledService(String pNumber, final IAsyncWorkCompletedCallback workCompletedCallback) {
+
+        final String url = Contants.SERVICE_BASE_URL + Contants.CanceledJob + pNumber;
+        new ServiceHelper().callService(url, null, new IServiceSuccessCallback() {
+            @Override
+            public void onDone(String doneWhatCode, String result, String error) {
+                if (result != null) {
+                    workCompletedCallback.onDone(result, true);
+                } else {
+                    workCompletedCallback.onDone("CanceledService done", false);
                 }
             }
         });

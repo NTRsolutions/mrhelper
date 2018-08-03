@@ -41,7 +41,7 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
     private boolean onGoingFlag;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView sewrvicename, serviceamount, aftertaxamount, totalservice, entrydate, address, cancel;
+        public TextView sewrvicename, serviceamount, aftertaxamount, totalservice, entrydate, address, cancel,bookingdate;
 
         public MyViewHolder(View view) {
             super(view);
@@ -52,6 +52,8 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
             entrydate = (TextView) view.findViewById(R.id.entrydate);
             address = (TextView) view.findViewById(R.id.address);
             cancel = (TextView) view.findViewById(R.id.cancel);
+            bookingdate = (TextView) view.findViewById(R.id.bookingdate);
+
         }
     }
 
@@ -73,11 +75,12 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        holder.sewrvicename.setText(bookservicelists.get(position).getServiceName());
+        holder.sewrvicename.setText(bookservicelists.get(position).getServicesno());
         holder.serviceamount.setText("Rs." + bookservicelists.get(position).getServiceamount());
         holder.aftertaxamount.setText("Rs." + bookservicelists.get(position).getAftertaxamount());
         holder.totalservice.setText(bookservicelists.get(position).getTotalservice());
-        holder.entrydate.setText(bookservicelists.get(position).getEntrydate());
+        holder.bookingdate.setText(bookservicelists.get(position).getEntrydate());
+        holder.entrydate.setText(bookservicelists.get(position).getTxtdate1()+","+bookservicelists.get(position).getTimepicker());
         holder.address.setText(bookservicelists.get(position).getHouseno() + " " + bookservicelists.get(position).getLoc() + "," + bookservicelists.get(position).getLandmark());
         if (onGoingFlag) {
             holder.cancel.setVisibility(View.VISIBLE);

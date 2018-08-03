@@ -8,13 +8,18 @@ import com.apitechnosoft.mrhelper.fragment.OldBookingFragment;
 import com.apitechnosoft.mrhelper.fragment.OnGoingBookingFragment;
 import com.apitechnosoft.mrhelper.fragment.ProfessionaWorkCompletedFragment;
 import com.apitechnosoft.mrhelper.fragment.ProfessionaWorkPendingFragment;
+import com.apitechnosoft.mrhelper.models.OrderBookedListEngineerWise;
+
+import java.util.ArrayList;
 
 public class ProfessionalWorkSheetAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
-
-    public ProfessionalWorkSheetAdapter(FragmentManager fm, int NumOfTabs) {
+    ArrayList<OrderBookedListEngineerWise> jobList;
+    String listStr;
+    public ProfessionalWorkSheetAdapter(FragmentManager fm, int NumOfTabs,String listStr) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+        this.listStr=listStr;
     }
 
     @Override
@@ -22,10 +27,10 @@ public class ProfessionalWorkSheetAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                ProfessionaWorkPendingFragment tab1 = new ProfessionaWorkPendingFragment();
+                ProfessionaWorkPendingFragment tab1 = ProfessionaWorkPendingFragment.newInstance(listStr, "");
                 return tab1;
             case 1:
-                ProfessionaWorkCompletedFragment tab2 = new ProfessionaWorkCompletedFragment();
+                ProfessionaWorkCompletedFragment tab2 = ProfessionaWorkCompletedFragment.newInstance(listStr, "");
                 return tab2;
             default:
                 return null;

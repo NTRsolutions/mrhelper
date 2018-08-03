@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.apitechnosoft.mrhelper.fragment.CanceledFragment;
 import com.apitechnosoft.mrhelper.fragment.OldBookingFragment;
 import com.apitechnosoft.mrhelper.fragment.OnGoingBookingFragment;
 
@@ -25,6 +26,9 @@ public class MyBookingPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 OldBookingFragment tab2 = new OldBookingFragment();
                 return tab2;
+            case 2:
+                CanceledFragment tab3 = new CanceledFragment();
+                return tab3;
             default:
                 return null;
         }

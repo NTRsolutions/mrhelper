@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/alert_layout_titleBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimValue_20"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/badlayout_emoji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimValue_10"
+            android:paddingRight="@dimen/dimValue_10">
+
+            <TextView
+                android:id="@+id/bad_emojiIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#E73C4E"
+                android:textSize="@dimen/dimTextSize_40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:text="Bad"
+                android:textColor="#E73C4E"
+                android:textSize="@dimen/dimTextSize_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/itsoklayout_emoji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimValue_10"
+            android:paddingRight="@dimen/dimValue_10">
+
+            <TextView
+                android:id="@+id/itsok_emojiIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F9DE6D"
+                android:textSize="@dimen/dimTextSize_40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:text="It's Ok"
+                android:textColor="#F9DE6D"
+                android:textSize="@dimen/dimTextSize_14" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/goodlayout_emoji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimValue_10"
+            android:paddingRight="@dimen/dimValue_10">
+
+            <TextView
+                android:id="@+id/good_emojiIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1fa5e4"
+                android:textSize="@dimen/dimTextSize_40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:text="Bad"
+                android:textColor="#1fa5e4"
+                android:textSize="@dimen/dimTextSize_14" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/awesomelayout_emoji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimValue_10"
+            android:paddingRight="@dimen/dimValue_10">
+
+            <TextView
+                android:id="@+id/Awesome_emojiIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00923F"
+                android:textSize="@dimen/dimTextSize_40" />
+
+            <TextView
+                android:id="@+id/tv_emojiText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimValue_10"
+                android:text="Awesome"
+                android:textColor="#00923F"
+                android:textSize="@dimen/dimTextSize_14" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

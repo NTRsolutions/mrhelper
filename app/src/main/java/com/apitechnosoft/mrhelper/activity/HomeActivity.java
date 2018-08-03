@@ -73,7 +73,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         getHomedata();
         callGetUserProfile();
-        getMyBooking();
         initView();
         slideimage();
     }
@@ -472,45 +471,5 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-    }
-
-
-    private void getMyBooking() {
-        if (Utility.isOnline(this)) {
-            String phone = Utility.getUserPhoneNo(HomeActivity.this);
-            if (phone != null) {
-                final CircleDotDialog dotDialog = new CircleDotDialog(HomeActivity.this);
-                dotDialog.show();
-                ServiceCaller serviceCaller = new ServiceCaller(this);
-                serviceCaller.callMyBookingService(phone, new IAsyncWorkCompletedCallback() {
-                    @Override
-                    public void onDone(String result, boolean isComplete) {
-                        if (isComplete) {
-                            parseMyBookingData(result);
-                        } else {
-                            Utility.alertForErrorMessage("Data not Found!", HomeActivity.this);
-                        }
-                        if (dotDialog.isShowing()) {
-                            dotDialog.dismiss();
-                        }
-                    }
-                });
-            }
-        } else {
-            Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
-        }
-    }
-
-    private void parseMyBookingData(String result) {
-        ContentMybooking data = new Gson().fromJson(result, ContentMybooking.class);
-        if (data != null) {
-            if (data.getBookservicelist() != null) {
-                DbHelper dbHelper = new DbHelper(HomeActivity.this);
-                dbHelper.deleteMyBookingData();
-                for (Bookservicelist bookservicelist : data.getBookservicelist()) {
-                    dbHelper.upsertMyBookingData(bookservicelist);
-                }
-            }
-        }
     }
 }

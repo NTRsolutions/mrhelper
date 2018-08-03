@@ -53,8 +53,9 @@ public class MyBookingActivity extends AppCompatActivity {
 
     private void initView() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("On Going Booking"));
-        tabLayout.addTab(tabLayout.newTab().setText("Booked"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pending"));
+        tabLayout.addTab(tabLayout.newTab().setText("Completed"));
+        tabLayout.addTab(tabLayout.newTab().setText("Canceled"));
         //tabLayout.addTab(tabLayout.newTab().setText("CANCELLED"));
         //tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

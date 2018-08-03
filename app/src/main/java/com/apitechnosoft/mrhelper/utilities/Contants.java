@@ -55,6 +55,9 @@ public class Contants {
     public static final String HostLogin = "loginenginee/dologinenginee?";
     public static final String GetProfessionalInfo = "PartnerDetailsForPartnerEdit/getpartnerdetailsForpartner?";
     public static final String OrderBookedListEngineerWise = "OrderBookedListEngineerWise/getorderbookedlistengineerwise?";
-
-
+    public static final String GetOtp = "OrderBookedEngineerWise/getorderbookedengineerwise?bookingsno=";
+    public static final String UpdateBookingstatus = "UpdateBookingstatus/setupdatebookingstatus?";
+    public static final String Feedback = "ServicesReviewApi/setservicesreviewApi?";
+    public static final String CompleteJob = "CompleteJobListApi/getCompleteJobListApi?mobile=";
+    public static final String CanceledJob = "CancelServicesCaller/getcanceleservices?mobileno=";
 }

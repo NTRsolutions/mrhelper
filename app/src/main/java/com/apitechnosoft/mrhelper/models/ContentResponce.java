@@ -19,4 +19,16 @@ public class ContentResponce {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    private Orderbookedengineerwise orderbookedengineerwise;
+
+    public Orderbookedengineerwise getOrderbookedengineerwise ()
+    {
+        return orderbookedengineerwise;
+    }
+
+    public void setOrderbookedengineerwise (Orderbookedengineerwise orderbookedengineerwise)
+    {
+        this.orderbookedengineerwise = orderbookedengineerwise;
+    }
 }

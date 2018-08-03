@@ -31,6 +31,7 @@ import com.apitechnosoft.mrhelper.professional.ProfessionalWorkSheetActivity;
 import com.apitechnosoft.mrhelper.utilities.Contants;
 import com.apitechnosoft.mrhelper.utilities.Utility;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +49,7 @@ public class ProfessionaWorkPendingFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String listStr;
     private String mParam2;
 
 
@@ -77,11 +78,12 @@ public class ProfessionaWorkPendingFragment extends Fragment {
     private Context context;
     private View view;
     RecyclerView recyclerView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            listStr = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -97,53 +99,26 @@ public class ProfessionaWorkPendingFragment extends Fragment {
     }
 
     private void init() {
-         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        getOrderBookedList();
+        filterCompleteJob();
     }
 
-    private void getOrderBookedList() {
-        if (Utility.isOnline(context)) {
-            final CircleDotDialog dotDialog = new CircleDotDialog(context);
-            dotDialog.show();
-            DbHelper dbhelper = new DbHelper(context);
-            PartnerDetailsForPartner data = dbhelper.getProfessionalUserData();
-            String requestUrl = null;
-            if (data != null) {
-                requestUrl = "servicesno=" + data.getService() + "&" + "type=" + "&" + "provider=Y" + "&" + "booking=" + "&" + "mobile=" + data.getMobileNo();
+    private void filterCompleteJob() {
+        ArrayList<OrderBookedListEngineerWise> MainjobList = new Gson().fromJson(listStr, new TypeToken<ArrayList<OrderBookedListEngineerWise>>() {
+        }.getType());
+        ArrayList<OrderBookedListEngineerWise> jobList = new ArrayList<OrderBookedListEngineerWise>();
+        for (OrderBookedListEngineerWise data : MainjobList) {
+            if (!data.getBookingstatus().equals("Completed")) {
+                jobList.add(data);
             }
-
-            ServiceCaller serviceCaller = new ServiceCaller(context);
-            serviceCaller.callOrderBookedListService(requestUrl, new IAsyncWorkCompletedCallback() {
-                @Override
-                public void onDone(String result, boolean isComplete) {
-                    if (isComplete) {
-                        ContentMybooking data = new Gson().fromJson(result, ContentMybooking.class);
-                        if (data != null) {
-                            if (data.getOrderBookedListEngineerWise() != null && data.getOrderBookedListEngineerWise().length > 0) {
-                                ArrayList<OrderBookedListEngineerWise> jobList = new ArrayList<OrderBookedListEngineerWise>(Arrays.asList(data.getOrderBookedListEngineerWise()));
-                                if (jobList != null) {
-                                    ProfessionalWorkPendingAdapter mAdapter = new ProfessionalWorkPendingAdapter(context, jobList, false);
-                                    recyclerView.setAdapter(mAdapter);
-                                }
-                                } else {
-                                    Toast.makeText(context, "No Job assigned to you!", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        } else {
-                            Utility.alertForErrorMessage(Contants.Error, context);
-                        }
-                        if (dotDialog.isShowing()) {
-                            dotDialog.dismiss();
-                        }
-                    }
-                });
-            } else{
-                Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, context);//off line msg....
-            }
-
+        }
+        if (jobList != null) {
+            ProfessionalWorkPendingAdapter mAdapter = new ProfessionalWorkPendingAdapter(context, jobList, false);
+            recyclerView.setAdapter(mAdapter);
         }
     }
+}

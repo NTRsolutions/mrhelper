@@ -35,7 +35,28 @@ public class ContentMybooking {
     {
         this.OrderBookedListEngineerWise = OrderBookedListEngineerWise;
     }
+    private CompleteJobList[] completeJobList;
 
+    public CompleteJobList[] getCompleteJobList ()
+    {
+        return completeJobList;
+    }
+
+    public void setCompleteJobList (CompleteJobList[] completeJobList)
+    {
+        this.completeJobList = completeJobList;
+    }
+    private Cancleservicelist[] cancleservicelist;
+
+    public Cancleservicelist[] getCancleservicelist ()
+    {
+        return cancleservicelist;
+    }
+
+    public void setCancleservicelist (Cancleservicelist[] cancleservicelist)
+    {
+        this.cancleservicelist = cancleservicelist;
+    }
     @Override
     public String toString()
     {
