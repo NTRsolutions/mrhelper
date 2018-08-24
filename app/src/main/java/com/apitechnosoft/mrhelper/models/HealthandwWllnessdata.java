@@ -3,7 +3,7 @@ package com.apitechnosoft.mrhelper.models;
 public class HealthandwWllnessdata {
     private String afterDiscountPrice;
 
-    private String sno;
+    private int sno;
 
     private String filePath;
 
@@ -41,11 +41,11 @@ public class HealthandwWllnessdata {
         this.afterDiscountPrice = afterDiscountPrice;
     }
 
-    public String getSno() {
+    public int getSno() {
         return sno;
     }
 
-    public void setSno(String sno) {
+    public void setSno(int sno) {
         this.sno = sno;
     }
 

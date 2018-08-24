@@ -131,7 +131,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(ProfileActivity.this, openScreen);
         startActivity(intent);
     }
-
     private void shareApp() {
         try {
             Intent i = new Intent(Intent.ACTION_SEND);

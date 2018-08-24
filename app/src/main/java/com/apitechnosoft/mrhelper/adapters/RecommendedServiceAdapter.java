@@ -22,6 +22,7 @@ import com.apitechnosoft.mrhelper.activity.PartyServiceActivity;
 import com.apitechnosoft.mrhelper.activity.RepairServiceActivity;
 import com.apitechnosoft.mrhelper.activity.Sal1ServiceActivity;
 import com.apitechnosoft.mrhelper.activity.SignupActivity;
+import com.apitechnosoft.mrhelper.models.HealthandwWllnessdata;
 import com.apitechnosoft.mrhelper.models.HelpForBusinesdata;
 import com.apitechnosoft.mrhelper.models.HomeCleaningdata;
 import com.apitechnosoft.mrhelper.models.HomeDesigndata;
@@ -158,7 +159,15 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
                 //image = replacedString + Obj.getFileName();
             }
         }
-
+        if (dataId == 10) {
+            HealthandwWllnessdata Obj = (HealthandwWllnessdata) relist.get(position);
+            title = Obj.getImageDescription();
+            String filePath = Obj.getFilePath();
+            if (filePath != null && !filePath.equals("")) {
+                image = filePath.replace("C:/Program Files (x86)/Apache Software Foundation/Tomcat 7.0/webapps", "http://mrhelper.in:8084");
+                //image = replacedString + Obj.getFileName();
+            }
+        }
         holder.recoText.setText(title);
         //Contants.ImageUrl+reObj.getFileName();
         String imageWithoutSpaces = image.replaceAll("\\s+", "");
@@ -221,6 +230,11 @@ public class RecommendedServiceAdapter extends RecyclerView.Adapter<RecommendedS
                 }
                 if (dataId == 9) {
                     OtherServiecsdata Obj = (OtherServiecsdata) relist.get(position);
+                    sno = Obj.getSno();
+                    type = Obj.getType();
+                }
+                if (dataId == 10) {
+                    HealthandwWllnessdata Obj = (HealthandwWllnessdata) relist.get(position);
                     sno = Obj.getSno();
                     type = Obj.getType();
                 }

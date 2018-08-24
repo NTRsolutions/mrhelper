@@ -638,7 +638,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="My Booings"
+                    android:text="My Bookings"
                     android:textColor="#fff"
                     android:textSize="@dimen/dimTextSize_12" />
 

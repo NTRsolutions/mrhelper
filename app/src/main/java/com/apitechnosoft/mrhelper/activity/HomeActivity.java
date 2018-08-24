@@ -336,6 +336,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     setAdapter(other_recycler_view, list, 9);
                 }
             }
+            if (data.getHealthandwWllnessdata() != null && data.getHealthandwWllnessdata().length > 0) {
+                ArrayList<?> list = new ArrayList(Arrays.asList(data.getHealthandwWllnessdata()));
+                if (list != null && list.size() > 0) {
+                    setAdapter(health_recycler_view, list, 10);
+                }
+            }
         }
     }
 
