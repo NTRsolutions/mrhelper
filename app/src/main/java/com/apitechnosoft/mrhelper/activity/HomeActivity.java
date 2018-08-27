@@ -220,7 +220,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 openScreen(HomeActivity.class);
                 break;
             case R.id.mybooking:
-                openScreen(MyBookingActivity.class);
+                openScreen(PayMentGateWay.class);//MyBookingActivity
                 break;
             case R.id.profile:
                 openScreen(ProfileActivity.class);

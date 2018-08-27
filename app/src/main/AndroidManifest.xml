@@ -34,7 +34,7 @@
 
     <application
         android:name=".framework.AppController"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -128,7 +128,9 @@
             android:name=".professional.ProfessionalWorkSheetActivity"
             android:label="Professional Work Sheet" />
         <activity android:name=".professional.UpdateBookingActivity" />
-        <activity android:name=".professional.FeedbackActivity"></activity>
+        <activity android:name=".professional.FeedbackActivity" />
+        <activity android:name=".activity.PayUMoneyActivity" />
+        <activity android:name=".activity.PayMentGateWay"></activity>
     </application>
 
 </manifest>
