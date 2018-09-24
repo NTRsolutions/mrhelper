@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.utilities.Contants;
-import com.payu.magicretry.MainActivity;
+import com.apitechnosoft.mrhelper.utilities.Utility;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -57,7 +58,7 @@ public class PayMentGateWay extends AppCompatActivity {
     Handler mHandler = new Handler();
 
 
-    static String getFirstName, getNumber, getEmailAddress, getRechargeAmt;
+    String jobId, getNumber, getEmailAddress, getRechargeAmt, name;
 
 
     ProgressDialog pDialog;
@@ -77,16 +78,17 @@ public class PayMentGateWay extends AppCompatActivity {
 
         Intent oIntent = getIntent();
 
-       /* getFirstName = oIntent.getExtras().getString("FIRST_NAME");
-        getNumber = oIntent.getExtras().getString("PHONE_NUMBER");
-        getEmailAddress = oIntent.getExtras().getString("EMAIL_ADDRESS");
-        getRechargeAmt = oIntent.getExtras().getString("RECHARGE_AMT");*/
+        jobId = oIntent.getExtras().getString("jobId");
+        getNumber = oIntent.getExtras().getString("UsePhoneNO");
+        getEmailAddress = oIntent.getExtras().getString("Email");
+        getRechargeAmt = oIntent.getExtras().getString("Amount");
+        name = oIntent.getExtras().getString("Name");
 
-        getFirstName = "Neeraj singh";
-        getEmailAddress ="neerajk0702@gmail.com";
+       /* getFirstName = "Neeraj singh";
+        getEmailAddress = "neerajk0702@gmail.com";
         getRechargeAmt = "11";
-        getNumber = "9599230702";
-        Log.d(Contants.LOG_TAG, "" + getFirstName + " : " + getEmailAddress + " : " + getRechargeAmt + " : " + getNumber);
+        getNumber = "9599230702";*/
+        Log.d(Contants.LOG_TAG, "Deails****" + name + " : " + jobId + " : " + getEmailAddress + " : " + getRechargeAmt + " : " + getNumber);
 
 
         //post_val = getIntent().getStringArrayListExtra("post_val");
@@ -95,7 +97,7 @@ public class PayMentGateWay extends AppCompatActivity {
         params.put("key", merchant_key);
 
         params.put("amount", getRechargeAmt);
-        params.put("firstname", getFirstName);
+        params.put("firstname", name);
         params.put("email", getEmailAddress);
         params.put("phone", getNumber);
         params.put("productinfo", "Recharge Wallet");
@@ -309,10 +311,7 @@ public class PayMentGateWay extends AppCompatActivity {
 	                    setResult(RESULT_OK, intent);
 	                    finish();*/
                     // new PostRechargeData().execute();
-                    Intent intent = new Intent(PayMentGateWay.this, MainActivity.class);
-                    intent.putExtra("test", getFirstName);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Successfully payment", Toast.LENGTH_LONG).show();
+                    onlinePaymentDone();
 
                 }
             });
@@ -351,6 +350,21 @@ public class PayMentGateWay extends AppCompatActivity {
 
     }
 
+    private void onlinePaymentDone() {
+        Toast.makeText(PayMentGateWay.this, "Your order has been placed successfully.", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(PayMentGateWay.this, ThankYouActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+        SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
+
+        SharedPreferences.Editor Partyeditor = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE).edit();
+        Partyeditor.clear();
+        Partyeditor.commit();
+    }
 
     public void webview_ClientPost(WebView webView, String url, Collection<Map.Entry<String, String>> postData) {
         StringBuilder sb = new StringBuilder();

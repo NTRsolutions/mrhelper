@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.apitechnosoft.mrhelper.R;
 import com.apitechnosoft.mrhelper.activity.HomeActivity;
 import com.apitechnosoft.mrhelper.activity.LoginActivity;
+import com.apitechnosoft.mrhelper.activity.PayMentGateWay;
+import com.apitechnosoft.mrhelper.activity.PaymentConfirmActivity;
 import com.apitechnosoft.mrhelper.circlecustomprogress.CircleDotDialog;
 import com.apitechnosoft.mrhelper.database.DbHelper;
 import com.apitechnosoft.mrhelper.framework.IAsyncWorkCompletedCallback;
@@ -41,7 +43,7 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
     private boolean onGoingFlag;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView sewrvicename, serviceamount, aftertaxamount, totalservice, entrydate, address, cancel,bookingdate;
+        public TextView paynow, sewrvicename, serviceamount, aftertaxamount, totalservice, entrydate, address, cancel, bookingdate, jobid;
 
         public MyViewHolder(View view) {
             super(view);
@@ -53,6 +55,8 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
             address = (TextView) view.findViewById(R.id.address);
             cancel = (TextView) view.findViewById(R.id.cancel);
             bookingdate = (TextView) view.findViewById(R.id.bookingdate);
+            jobid = (TextView) view.findViewById(R.id.jobid);
+            paynow = (TextView) view.findViewById(R.id.paynow);
 
         }
     }
@@ -80,17 +84,32 @@ public class OnGoingBookingAdapter extends RecyclerView.Adapter<OnGoingBookingAd
         holder.aftertaxamount.setText("Rs." + bookservicelists.get(position).getAftertaxamount());
         holder.totalservice.setText(bookservicelists.get(position).getTotalservice());
         holder.bookingdate.setText(bookservicelists.get(position).getEntrydate());
-        holder.entrydate.setText(bookservicelists.get(position).getTxtdate1()+","+bookservicelists.get(position).getTimepicker());
+        holder.jobid.setText(bookservicelists.get(position).getJobId() + "");
+        holder.entrydate.setText(bookservicelists.get(position).getTxtdate1() + "," + bookservicelists.get(position).getTimepicker());
         holder.address.setText(bookservicelists.get(position).getHouseno() + " " + bookservicelists.get(position).getLoc() + "," + bookservicelists.get(position).getLandmark());
         if (onGoingFlag) {
             holder.cancel.setVisibility(View.VISIBLE);
+            holder.paynow.setVisibility(View.VISIBLE);
         } else {
             holder.cancel.setVisibility(View.GONE);
+            holder.paynow.setVisibility(View.GONE);
         }
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertNative(position);
+            }
+        });
+        holder.paynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PayMentGateWay.class);
+                intent.putExtra("jobId", bookservicelists.get(position).getJobId());
+                intent.putExtra("UsePhoneNO", bookservicelists.get(position).getMobile());
+                intent.putExtra("Amount", bookservicelists.get(position).getAftertaxamount());
+                intent.putExtra("Email", bookservicelists.get(position).getEmail());
+                intent.putExtra("Name", bookservicelists.get(position).getName());
+                mContext.startActivity(intent);
             }
         });
     }

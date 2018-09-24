@@ -32,6 +32,9 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
     TextView totalservice, serviceamount, amountservicetax;
     String usermobileNo;
     String paymentMode = "";
+    double aftertaxamount = 0;
+    String emailaddressStr;
+    String nameStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,11 +113,11 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         String houneNoStr = prefs.getString("houneNoStr", "");
         String locationstr = prefs.getString("locationstr", "");
         String landMarkStr = prefs.getString("landMarkStr", "");
-        String nameStr = prefs.getString("nameStr", "");
+        nameStr = prefs.getString("nameStr", "");
         String mobileNostr = prefs.getString("mobileNostr", "");
         usermobileNo = mobileNostr;
         String passwordstr = prefs.getString("passwordstr", "");
-        String emailaddressStr = prefs.getString("emailaddressStr", "");
+        emailaddressStr = prefs.getString("emailaddressStr", "");
         String timeViewStr = prefs.getString("timeViewStr", "");
         String caladerDateStr = prefs.getString("caladerDateStr", "");
         float totalAmount = prefs.getFloat("totalAmount", 0);
@@ -122,7 +125,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         int sno = prefs.getInt("Sno", 0);
         int NoOfService = prefs.getInt("NoOfService", 0);
         double gstTax = ((18 / 100) * totalAmount);
-        double aftertaxamount = gstTax + totalAmount;
+        aftertaxamount = gstTax + totalAmount;
         if (NoOfService != 0) {
             totalservice.setText(NoOfService + "");
         }
@@ -141,11 +144,11 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         String houneNoStr = prefs.getString("houneNoStr", "");
         String locationstr = prefs.getString("locationstr", "");
         String landMarkStr = prefs.getString("landMarkStr", "");
-        String nameStr = prefs.getString("nameStr", "");
+        nameStr = prefs.getString("nameStr", "");
         String mobileNostr = prefs.getString("mobileNostr", "");
         usermobileNo = mobileNostr;
         String passwordstr = prefs.getString("passwordstr", "");
-        String emailaddressStr = prefs.getString("emailaddressStr", "");
+        emailaddressStr = prefs.getString("emailaddressStr", "");
         // String timeViewStr = prefs.getString("timeViewStr", "");
         String caladerDateStr = prefs.getString("caladerDateStr", "");
         //String totalAmount = prefs.getString("totalAmount", "");
@@ -174,15 +177,19 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
                     ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
                     if (data != null) {
                         if (data.isStatus()) {
-                            Toast.makeText(PaymentConfirmActivity.this, "Your order has been placed successfully.", Toast.LENGTH_LONG).show();
-                            Utility.setUserPhoneNo(PaymentConfirmActivity.this, usermobileNo);
-                            Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-
-                            SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
-                            editor.clear();
-                            editor.commit();
+                            String jobId = data.getJobid();
+                            if (paymentMode.equals("Online")) {
+                                Utility.setUserPhoneNo(PaymentConfirmActivity.this, usermobileNo);
+                                Intent intent = new Intent(PaymentConfirmActivity.this, PayMentGateWay.class);
+                                intent.putExtra("jobId", jobId);
+                                intent.putExtra("UsePhoneNO", usermobileNo);
+                                intent.putExtra("Amount", String.valueOf(aftertaxamount));
+                                intent.putExtra("Email", emailaddressStr);
+                                intent.putExtra("Name", nameStr);
+                                startActivity(intent);
+                            } else {
+                                codPaymentDone();
+                            }
                         } else {
                             Utility.alertForErrorMessage("Your order has not been placed successfully!", PaymentConfirmActivity.this);
                         }
@@ -212,20 +219,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
                     ContentResponce data = new Gson().fromJson(result, ContentResponce.class);
                     if (data != null) {
                         if (data.isStatus()) {
-                            Toast.makeText(PaymentConfirmActivity.this, "Your order has been placed successfully.", Toast.LENGTH_LONG).show();
-                            Utility.setUserPhoneNo(PaymentConfirmActivity.this, usermobileNo);
-
-                            Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-
-                            SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
-                            editor.clear();
-                            editor.commit();
-
-                            SharedPreferences.Editor Partyeditor = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE).edit();
-                            Partyeditor.clear();
-                            Partyeditor.commit();
+                            codPaymentDone();
                         } else {
                             Utility.alertForErrorMessage("Your order has not been placed successfully!", PaymentConfirmActivity.this);
                         }
@@ -240,5 +234,22 @@ public class PaymentConfirmActivity extends AppCompatActivity implements View.On
         } else {
             Utility.alertForErrorMessage(Contants.OFFLINE_MESSAGE, this);//off line msg....
         }
+    }
+
+    private void codPaymentDone() {
+        Toast.makeText(PaymentConfirmActivity.this, "Your order has been placed successfully.", Toast.LENGTH_LONG).show();
+        Utility.setUserPhoneNo(PaymentConfirmActivity.this, usermobileNo);
+
+        Intent intent = new Intent(PaymentConfirmActivity.this, ThankYouActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+        SharedPreferences.Editor editor = getSharedPreferences("SaveDataPre", MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
+
+        SharedPreferences.Editor Partyeditor = getSharedPreferences("PartySaveDataPre", MODE_PRIVATE).edit();
+        Partyeditor.clear();
+        Partyeditor.commit();
     }
 }
